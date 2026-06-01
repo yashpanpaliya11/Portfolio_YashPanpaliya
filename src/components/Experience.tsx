@@ -37,7 +37,7 @@ export default function Experience() {
   }, { scope: container });
 
   return (
-    <section id="experience" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-black overflow-hidden">
+    <section id="experience" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#0a0a0a] overflow-hidden">
       {/* Curtain Overlay */}
       <div ref={overlayRef} className="absolute inset-0 bg-black z-50 pointer-events-none"></div>
 

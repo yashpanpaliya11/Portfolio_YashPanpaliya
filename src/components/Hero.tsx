@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { Github } from 'lucide-react';
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -73,13 +74,13 @@ export default function Hero() {
             Selected Work ↓
           </a>
           <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2">
-            View GitHub ↗
+            <Github className="w-5 h-5 drop-shadow-sm stroke-[1.5]" /> View GitHub ↗
           </a>
         </div>
       </div>
 
       <div 
-        className="w-full md:w-[45%] lg:w-[40%] min-h-[50vh] md:min-h-screen border-t md:border-t-0 md:border-l border-border-main relative flex items-center justify-center bg-[#080808] z-10 overflow-hidden"
+        className="w-full md:w-[45%] lg:w-[40%] min-h-[50vh] md:min-h-screen relative flex items-center justify-center bg-bg-main z-10 overflow-hidden"
         onMouseMove={(e) => {
           if (!imageReveal.current) return;
           const wrapper = imageReveal.current.querySelector('.tilt-wrapper');
@@ -124,7 +125,8 @@ export default function Hero() {
               className="w-full h-full object-cover object-[center_top] grayscale filter brightness-95 hover:grayscale-0 transition-all duration-500 cursor-pointer"
             />
           </div>
-          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#080808] to-transparent pointer-events-none z-10"></div>
+          <div className="absolute inset-y-0 left-0 w-32 md:w-64 bg-gradient-to-r from-bg-main to-transparent pointer-events-none z-10 hidden md:block"></div>
+          <div className="absolute inset-x-0 top-0 h-32 md:hidden bg-gradient-to-b from-bg-main to-transparent pointer-events-none z-10"></div>
         </div>
       </div>
     </section>

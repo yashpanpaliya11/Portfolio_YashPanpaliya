@@ -1,3 +1,5 @@
+import { Mail, Github, Linkedin } from 'lucide-react';
+
 export default function Footer() {
   return (
     <footer className="bg-bg-card p-8 md:p-12 lg:p-16 border-[#ffffff14]">
@@ -15,10 +17,10 @@ export default function Footer() {
             BUILT WITH REACT + FIREBASE
           </div>
           
-          <div className="flex gap-6 font-mono text-xs uppercase tracking-wider text-text-secondary">
-            <a href="mailto:yashpanpaliya11@gmail.com" className="hover:text-accent transition-colors">EMAIL</a>
-            <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">GITHUB</a>
-            <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LINKEDIN</a>
+          <div className="flex gap-6 font-mono text-xs uppercase tracking-wider text-text-secondary group-links">
+            <a href="mailto:yashpanpaliya11@gmail.com" className="hover:text-accent transition-colors flex items-center gap-2"><Mail className="w-4 h-4 drop-shadow-md stroke-[1.5]" /> EMAIL</a>
+            <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-2"><Github className="w-4 h-4 drop-shadow-md stroke-[1.5]" /> GITHUB</a>
+            <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-2"><Linkedin className="w-4 h-4 drop-shadow-md stroke-[1.5]" /> LINKEDIN</a>
           </div>
           
           <div className="text-text-muted text-xs mt-4 md:mt-0 font-mono">

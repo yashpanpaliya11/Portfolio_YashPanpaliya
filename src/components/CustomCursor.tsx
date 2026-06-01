@@ -3,22 +3,14 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
 export default function CustomCursor() {
-  const cursorDot = useRef<HTMLDivElement>(null);
-  const cursorOutline = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       const { clientX, clientY } = e;
       
-      gsap.to(cursorDot.current, {
-        x: clientX,
-        y: clientY,
-        duration: 0,
-        ease: "none"
-      });
-
-      gsap.to(cursorOutline.current, {
+      gsap.to(cursorRef.current, {
         x: clientX,
         y: clientY,
         duration: 0.15,
@@ -53,9 +45,7 @@ export default function CustomCursor() {
   }, []);
 
   return (
-    <>
-      <div ref={cursorDot} className="cursor-dot hidden md:block"></div>
-      <div ref={cursorOutline} className="cursor-outline hidden md:block"></div>
-    </>
+    <div ref={cursorRef} className="custom-cursor hidden md:block"></div>
   );
 }
+

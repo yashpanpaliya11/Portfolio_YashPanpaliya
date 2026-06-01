@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Github, Linkedin } from 'lucide-react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -67,8 +68,8 @@ export default function Navbar() {
         </nav>
 
         <div className="flex flex-col gap-4 text-text-muted font-mono text-[10px] uppercase tracking-widest">
-          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">GH.</a>
-          <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">IN.</a>
+          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Github className="w-4 h-4 drop-shadow-md stroke-[1.5]" />GH.</a>
+          <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Linkedin className="w-4 h-4 drop-shadow-md stroke-[1.5]" />IN.</a>
         </div>
       </aside>
 

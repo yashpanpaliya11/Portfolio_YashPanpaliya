@@ -1,14 +1,32 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, X } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
   const container = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSelectedImage(null);
+    };
+    if (selectedImage) {
+      document.body.style.overflow = 'hidden';
+      document.addEventListener('keydown', handleKeyDown);
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedImage]);
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -81,6 +99,10 @@ export default function Projects() {
                   <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Built conversational AI workflows with n8n and AI Agents for seamless customer interactions.</li>
                   <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Automated order tracking, FAQ handling, and WhatsApp notifications, reducing manual operations.</li>
                 </ul>
+                
+                <a href="https://github.com/yashpanpaliya11/n8n-Restaurant" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full hover:bg-accent/10 transition-colors mb-6 font-medium">
+                  View Project <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
 
               <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider flex-wrap mt-auto pt-6 border-t border-[#ffffff14]">
@@ -92,18 +114,20 @@ export default function Projects() {
               <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                 <img 
                   src="https://i.ibb.co/35T1dykp/Screenshot-2026-05-31-at-12-47-54-AM.png" 
-                  alt="n8n Automation" 
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  alt="n8n Automation"
+                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/35T1dykp/Screenshot-2026-05-31-at-12-47-54-AM.png'); }}
+                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
                 />
-                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary">n8n Automation</div>
+                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">n8n Automation</div>
               </div>
               <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                 <img 
                   src="https://i.ibb.co/Z6DtKGGv/WHA.jpg" 
                   alt="WhatsApp Chat" 
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/Z6DtKGGv/WHA.jpg'); }}
+                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
                 />
-                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary">WhatsApp Chat</div>
+                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">WhatsApp Chat</div>
               </div>
             </div>
           </div>
@@ -123,8 +147,8 @@ export default function Projects() {
                   Full-stack Lead Management CRM with Firebase Auth, protected routes, and real-time pipeline tracking. Built to streamline workflow efficiency with automated reminders and an intuitive user interface.
                 </p>
                 
-                <a href="https://crm-gharpayy.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-bg-main bg-accent px-4 py-2 rounded-sm hover:opacity-80 transition-opacity mb-6 font-medium tracking-wide">
-                  VIEW LIVE <ArrowUpRight className="w-3 h-3" />
+                <a href="https://crm-gharpayy.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full hover:bg-accent/10 transition-colors mb-6 font-medium">
+                  View Live <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
               
@@ -138,26 +162,29 @@ export default function Projects() {
                 <img 
                   src="https://i.ibb.co/DsC8Ssm/Screenshot-2026-05-31-at-12-58-52-AM.png" 
                   alt="CRM Dashboard Pipeline" 
-                  className="absolute inset-0 w-full h-full object-cover object-left-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/DsC8Ssm/Screenshot-2026-05-31-at-12-58-52-AM.png'); }}
+                  className="absolute inset-0 w-full h-full object-cover object-left-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
                 />
-                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary">Pipeline View</div>
+                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Pipeline View</div>
               </div>
               <div className="flex-1 flex flex-col gap-4 min-h-[200px]">
                 <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                   <img 
                     src="https://i.ibb.co/PKZKtKs/Screenshot-2026-05-31-at-1-04-03-AM.png" 
                     alt="CRM Lead Details" 
-                    className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/PKZKtKs/Screenshot-2026-05-31-at-1-04-03-AM.png'); }}
+                    className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
                   />
-                  <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary">Admin</div>
+                  <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Admin</div>
                 </div>
                 <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                   <img 
                     src="https://i.ibb.co/qLSgjBTP/1779904304632.jpg" 
                     alt="CRM Mobile View" 
-                    className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                    onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/qLSgjBTP/1779904304632.jpg'); }}
+                    className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
                   />
-                  <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary">Details</div>
+                  <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Details</div>
                 </div>
               </div>
             </div>
@@ -170,8 +197,8 @@ export default function Projects() {
               <p className="text-text-secondary text-xs leading-relaxed mb-4">
                 AI retail platform featuring voice "Rush Mode" via Gemini API and interactive dashboards.
               </p>
-              <a href="https://dukaan-mate-final.vercel.app/#/dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-bg-main bg-accent px-3 py-1.5 rounded-sm hover:opacity-80 transition-opacity mb-4 font-medium tracking-wide">
-                VIEW LIVE <ArrowUpRight className="w-3 h-3" />
+              <a href="https://dukaan-mate-final.vercel.app/#/dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full hover:bg-accent/10 transition-colors mb-4 font-medium w-fit">
+                View Live <ArrowRight className="w-3 h-3" />
               </a>
             </div>
             <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider mt-auto pt-4 border-t border-[#ffffff14]">
@@ -186,8 +213,8 @@ export default function Projects() {
               <p className="text-text-secondary text-xs leading-relaxed mb-4">
                 Scalable UI implementing dynamic routing, real-time search, and optimized API data rendering.
               </p>
-              <a href="https://msclonenst.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-bg-main bg-accent px-3 py-1.5 rounded-sm hover:opacity-80 transition-opacity mb-4 font-medium tracking-wide">
-                VIEW LIVE <ArrowUpRight className="w-3 h-3" />
+              <a href="https://msclonenst.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full hover:bg-accent/10 transition-colors mb-4 font-medium w-fit">
+                View Live <ArrowRight className="w-3 h-3" />
               </a>
             </div>
             <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider mt-auto pt-4 border-t border-[#ffffff14]">
@@ -197,6 +224,37 @@ export default function Projects() {
 
         </div>
       </div>
+
+      {selectedImage && typeof document !== 'undefined' && createPortal(
+        <div 
+          className="fixed inset-0 z-[99999] flex items-center justify-center bg-[rgba(0,0,0,0.92)] backdrop-blur-sm p-4 sm:p-8"
+          onClick={() => setSelectedImage(null)}
+          style={{ animation: 'lbFadeIn 0.3s ease-out' }}
+        >
+          <style>{`
+            @keyframes lbFadeIn {
+              from { opacity: 0; transform: scale(0.98); }
+              to { opacity: 1; transform: scale(1); }
+            }
+          `}</style>
+          
+          <button 
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/50 hover:text-white p-2 transition-colors z-10"
+            onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
+            aria-label="Close lightbox"
+          >
+            <X className="w-8 h-8" />
+          </button>
+          
+          <img 
+            src={selectedImage} 
+            alt="Project full view" 
+            className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl rounded-sm"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>,
+        document.body
+      )}
     </section>
   );
 }

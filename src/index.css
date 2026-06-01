@@ -97,10 +97,10 @@ body {
 }
 
 /* Custom Cursor */
-.cursor-dot {
-  width: 6px; 
-  height: 6px;
-  background: var(--accent);
+.custom-cursor {
+  width: 24px; 
+  height: 24px;
+  background: white;
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -108,26 +108,13 @@ body {
   transform: translate(-50%, -50%);
   top: 0;
   left: 0;
+  mix-blend-mode: difference;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
-.cursor-outline {
-  width: 32px; 
-  height: 32px;
-  border: 1px solid rgba(255,255,255,0.5);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9998;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, border-color 0.3s;
-  top: 0;
-  left: 0;
-}
-
-body.cursor-hover .cursor-outline {
-  width: 48px; 
-  height: 48px;
-  border-color: rgba(255,255,255,0.9);
+body.cursor-hover .custom-cursor {
+  width: 100px; 
+  height: 100px;
 }
 
 .card {
@@ -157,6 +144,8 @@ body.cursor-hover .cursor-outline {
 }
 
 /* Hover effect helper */
-a, button, [role="button"] {
-  cursor: none !important;
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
