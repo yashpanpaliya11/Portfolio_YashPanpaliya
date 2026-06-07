@@ -1,0 +1,28 @@
+{
+  "entities": {
+    "Visitor": {
+      "title": "Visitor",
+      "description": "A visitor to the site who entered their name.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name entered by the visitor."
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Timestamp when the visitor logged in."
+        }
+      },
+      "required": ["name", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/visitors/{visitorId}": {
+      "schema": {
+        "$ref": "#/entities/Visitor"
+      },
+      "description": "Stores visitor names."
+    }
+  }
+}

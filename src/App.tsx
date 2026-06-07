@@ -15,10 +15,15 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollSmootherInit from './components/ScrollSmootherInit';
+import Loader from './components/Loader';
+import { useState } from 'react';
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+
   return (
     <div className="min-h-screen bg-bg-main text-text-primary flex">
+      {loading && <Loader onComplete={() => setLoading(false)} />}
       <CustomCursor />
       <Navbar />
       <ScrollSmootherInit />
