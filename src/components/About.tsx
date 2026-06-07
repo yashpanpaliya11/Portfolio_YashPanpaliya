@@ -26,15 +26,15 @@ export default function About() {
     })
     // Fade up stagger on scroll
     .fromTo(".about-element",
-      { y: 30, opacity: 0 },
+      { y: 40, opacity: 0 },
       { 
         y: 0, 
         opacity: 1, 
         duration: 0.8, 
-        stagger: 0.1, 
+        stagger: 0.15, 
         ease: "power2.out",
       },
-      "-=0.5"
+      "-=0.6"
     );
 
     // Stats count up

@@ -1,7 +1,10 @@
 import { useRef } from 'react';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { Github } from 'lucide-react';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Github, ArrowDown, Download } from 'lucide-react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const container = useRef<HTMLDivElement>(null);
@@ -11,6 +14,7 @@ export default function Hero() {
   const ctaGroup = useRef<HTMLDivElement>(null);
   const imageReveal = useRef<HTMLDivElement>(null);
   const heroContent = useRef<HTMLDivElement>(null);
+  const scrollIndicator = useRef<HTMLDivElement>(null);
   
   useGSAP(() => {
     // Initial Load Animation
@@ -39,7 +43,23 @@ export default function Hero() {
       { y: 20, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
       "-=0.6"
+    )
+    .fromTo(scrollIndicator.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: "power2.out" },
+      "-=0.2"
     );
+
+    // Scroll fade out
+    gsap.to(scrollIndicator.current, {
+      opacity: 0,
+      scrollTrigger: {
+        trigger: container.current,
+        start: "top top",
+        end: "+=300",
+        scrub: true,
+      }
+    });
 
   }, { scope: container });
 
@@ -65,7 +85,7 @@ export default function Hero() {
             <span className="font-mono text-[10px] uppercase tracking-wider text-text-primary">Open to Internships</span>
           </div>
           <p className="text-sm md:text-base text-text-secondary leading-relaxed bg-bg-main/80 backdrop-blur-sm rounded-md p-2 -ml-2">
-            Software engineer skilled in React, JavaScript, and Python. Building API-based applications and exploring AI tech like LLMs to build scalable solutions.
+            Shipping AI automation at Observal · Founding Intern @ Campus Connect | n8n · Python · React | CSE @ Newton School of Technology | Builder by nature 🚀
           </p>
         </div>
         
@@ -73,9 +93,21 @@ export default function Hero() {
           <a href="#projects" className="px-6 py-3 bg-text-primary text-bg-main font-medium text-sm rounded-sm hover:bg-accent hover:text-bg-main transition-colors">
             Selected Work ↓
           </a>
-          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1-FvkEPdEgToE9jeAwqIwkHfI0Eulcnqi/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="group relative px-6 py-3 bg-accent/10 border border-accent/40 text-accent font-medium text-sm rounded-sm overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] flex items-center gap-2">
+            <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+            <Download className="w-5 h-5 drop-shadow-sm stroke-[2] group-hover:-translate-y-0.5 transition-transform relative z-10" /> 
+            <span className="relative z-10">Download Resume</span>
+          </a>
+          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2 shrink-0">
             <Github className="w-5 h-5 drop-shadow-sm stroke-[1.5]" /> View GitHub ↗
           </a>
+        </div>
+        
+        <div ref={scrollIndicator} className="absolute bottom-12 left-8 md:left-12 lg:left-16 xl:left-24 flex items-center gap-2 text-text-muted font-mono text-[10px] uppercase tracking-wider opacity-0">
+          <div className="w-5 h-8 border border-text-muted/50 rounded-full flex justify-center p-1">
+            <div className="w-1 h-2 bg-text-muted rounded-full animate-bounce"></div>
+          </div>
+          Scroll to explore
         </div>
       </div>
 

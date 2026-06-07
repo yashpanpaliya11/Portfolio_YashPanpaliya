@@ -1,17 +1,9 @@
-async function getOGImage(url) {
-  try {
-    const res = await fetch(url);
-    const text = await res.text();
-    const match = text.match(/<meta\s+property="og:image"\s+content="([^"]+)"/i);
-    if (match) {
-      console.log(match[1]);
-    } else {
-      console.log('No og:image found for', url);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-getOGImage('https://ibb.co/RGg2bp73');
-getOGImage('https://ibb.co/kgCk055z');
+const https = require('https');
+https.get('https://ibb.co/wN3Zy2nk', (res) => {
+  let data = '';
+  res.on('data', (chunk) => data += chunk);
+  res.on('end', () => {
+    const match = data.match(/property="og:image" content="(.*?)"/);
+    if(match) console.log(match[1]);
+  });
+});

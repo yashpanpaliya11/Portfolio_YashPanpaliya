@@ -1,32 +1,16 @@
-import { useRef, useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowUpRight, ArrowRight, X } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
   const container = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setSelectedImage(null);
-    };
-    if (selectedImage) {
-      document.body.style.overflow = 'hidden';
-      document.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-    return () => {
-      document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [selectedImage]);
+  const navigate = useNavigate();
 
   useGSAP(() => {
     const tl = gsap.timeline({
@@ -54,7 +38,7 @@ export default function Projects() {
       "-=0.6"
     )
     .fromTo('.project-card',
-      { y: 50, opacity: 0 },
+      { y: 40, opacity: 0 },
       {
         y: 0,
         opacity: 1,
@@ -62,7 +46,7 @@ export default function Projects() {
         stagger: 0.15,
         ease: "power2.out",
       },
-      "-=0.4"
+      "-=0.6"
     );
   }, { scope: container });
 
@@ -81,60 +65,67 @@ export default function Projects() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          
-          {/* New Featured Full-Width Card */}
-          <div className="project-card md:col-span-2 group cursor-pointer bg-[#111111] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300">
-            <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-[#111] px-2 py-1">MAY 2026 - PRESENT</div>
 
-            <div className="flex-1 flex flex-col justify-between relative z-10">
+          {/* 1. AI Voice Agent Card */}
+          <div 
+            onClick={() => navigate('/project/voice-agent')}
+            className="project-card cursor-pointer md:col-span-2 group bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300"
+          >
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1 flex items-center gap-2">
+              <span className="text-accent">●</span> COMPLETED (3 DAYS)
+            </div>
+
+            <div className="flex-1 lg:w-1/2 flex flex-col justify-between relative z-10 cursor-pointer">
               <div>
-                <div className="flex items-center gap-2 mb-4">
+                <div className="flex items-center gap-2 mb-4 mt-2 md:mt-0">
                   <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
-                  <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Latest Work</span>
+                  <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Latest Work / Voice AI</span>
                 </div>
-                <h3 className="text-xl md:text-2xl uppercase tracking-widest mb-4">AI-Powered WhatsApp Ordering</h3>
-                <ul className="text-text-secondary text-sm leading-relaxed mb-6 space-y-2">
-                  <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Developed an AI-powered WhatsApp Restaurant Assistant for automated food ordering and customer support.</li>
-                  <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Implemented real-time inventory checking and order management using Google Sheets.</li>
-                  <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Built conversational AI workflows with n8n and AI Agents for seamless customer interactions.</li>
-                  <li className="flex items-start gap-2"><span className="text-text-muted mt-0.5">▹</span> Automated order tracking, FAQ handling, and WhatsApp notifications, reducing manual operations.</li>
-                </ul>
+                <h3 className="text-xl md:text-2xl uppercase tracking-widest mb-4 group-hover:text-accent transition-colors">AI Voice Booking Agent</h3>
+                <p className="text-text-secondary text-sm leading-relaxed mb-6">
+                  Built an end-to-end Hindi-speaking voice AI system that automatically books appointments over a phone call — no human receptionist needed. The agent naturally handles conversations, checks calendar availability, confirms slots, collects user details, and logs everything to Google Sheets automatically.
+                </p>
                 
-                <a href="https://github.com/yashpanpaliya11/n8n-Restaurant" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full hover:bg-accent/10 transition-colors mb-6 font-medium">
-                  View Project <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-
-              <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider flex-wrap mt-auto pt-6 border-t border-[#ffffff14]">
-                <span>#n8n</span><span>#Automation</span><span>#AI_Agents</span><span>#Google_Sheets</span>
+                <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider flex-wrap mb-6">
+                  <span className="px-2 py-1 bg-white/5 rounded-sm border border-white/5">#ElevenLabs</span>
+                  <span className="px-2 py-1 bg-white/5 rounded-sm border border-white/5">#n8n</span>
+                  <span className="px-2 py-1 bg-white/5 rounded-sm border border-white/5">#Cal.com</span>
+                  <span className="px-2 py-1 bg-white/5 rounded-sm border border-white/5">#Twilio</span>
+                </div>
+                
+                <div className="group relative inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] font-medium w-fit">
+                  <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                  <span className="relative z-10 flex items-center gap-2">View Project Details <ArrowRight className="w-4 h-4" /></span>
+                </div>
               </div>
             </div>
 
-            <div className="flex-1 flex flex-col sm:flex-row gap-4 w-full min-h-[220px] lg:h-auto">
-              <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                <img 
-                  src="https://i.ibb.co/35T1dykp/Screenshot-2026-05-31-at-12-47-54-AM.png" 
-                  alt="n8n Automation"
-                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/35T1dykp/Screenshot-2026-05-31-at-12-47-54-AM.png'); }}
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
-                />
-                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">n8n Automation</div>
+            <div className="flex-1 lg:w-1/2 flex flex-col sm:flex-row gap-4 w-full h-full min-h-[300px]">
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
+                  <img src="https://i.ibb.co/VYQV20Z7/1780487143638.jpg" alt="Voice Agent Flow 1" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                </div>
+                <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
+                  <img src="https://i.ibb.co/8DXPb5JN/1780487145898.jpg" alt="Voice Agent Flow 3" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                </div>
               </div>
-              <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                <img 
-                  src="https://i.ibb.co/Z6DtKGGv/WHA.jpg" 
-                  alt="WhatsApp Chat" 
-                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/Z6DtKGGv/WHA.jpg'); }}
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
-                />
-                <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">WhatsApp Chat</div>
+              <div className="flex-1 flex flex-col gap-4">
+                <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
+                  <img src="https://i.ibb.co/BHYgTC2Z/1780487142586.jpg" alt="Voice Agent Flow 2" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                </div>
+                <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
+                  <img src="https://i.ibb.co/mrn9LkxK/1780487143973.jpg" alt="Voice Agent Flow 4" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Featured Large Card */}
-          <div className="project-card md:col-span-2 group cursor-pointer bg-[#111111] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300">
-            <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-[#111] px-2 py-1">FEB-MAR 2026</div>
+          {/* 2. CRM Dashboard Card */}
+          <div 
+            onClick={() => navigate('/project/crm-dashboard')}
+            className="project-card md:col-span-2 group cursor-pointer bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300"
+          >
+            <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1">FEB-MAR 2026</div>
 
             <div className="flex-1 lg:w-2/5 flex flex-col justify-between relative z-10">
               <div>
@@ -142,14 +133,15 @@ export default function Projects() {
                   <span className="w-1.5 h-1.5 bg-accent rounded-full"></span>
                   <span className="font-mono text-[10px] text-accent tracking-widest uppercase">Featured</span>
                 </div>
-                <h3 className="text-xl md:text-2xl uppercase tracking-widest mb-4">CRM Dashboard</h3>
+                <h3 className="text-xl md:text-2xl uppercase tracking-widest mb-4 group-hover:text-accent transition-colors">CRM Dashboard</h3>
                 <p className="text-text-secondary text-sm leading-relaxed mb-6">
                   Full-stack Lead Management CRM with Firebase Auth, protected routes, and real-time pipeline tracking. Built to streamline workflow efficiency with automated reminders and an intuitive user interface.
                 </p>
                 
-                <a href="https://crm-gharpayy.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full hover:bg-accent/10 transition-colors mb-6 font-medium">
-                  View Live <ArrowRight className="w-4 h-4" />
-                </a>
+                <div className="group relative inline-flex items-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-2.5 rounded-full overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] mb-6 font-medium w-fit">
+                  <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                  <span className="relative z-10 flex items-center gap-2">View Project Details <ArrowRight className="w-4 h-4" /></span>
+                </div>
               </div>
               
               <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider flex-wrap mt-auto pt-6 border-t border-[#ffffff14]">
@@ -157,13 +149,12 @@ export default function Projects() {
               </div>
             </div>
 
-            <div className="flex-1 lg:w-3/5 flex flex-col sm:flex-row gap-4 w-full min-h-[300px] lg:h-auto">
+            <div className="flex-1 lg:w-3/5 flex flex-col sm:flex-row gap-4 w-full min-h-[300px] lg:h-auto pointer-events-none">
               <div className="flex-[2] rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors min-h-[200px]">
                 <img 
                   src="https://i.ibb.co/DsC8Ssm/Screenshot-2026-05-31-at-12-58-52-AM.png" 
                   alt="CRM Dashboard Pipeline" 
-                  onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/DsC8Ssm/Screenshot-2026-05-31-at-12-58-52-AM.png'); }}
-                  className="absolute inset-0 w-full h-full object-cover object-left-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
+                  className="absolute inset-0 w-full h-full object-cover object-left-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                 />
                 <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Pipeline View</div>
               </div>
@@ -172,8 +163,7 @@ export default function Projects() {
                   <img 
                     src="https://i.ibb.co/PKZKtKs/Screenshot-2026-05-31-at-1-04-03-AM.png" 
                     alt="CRM Lead Details" 
-                    onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/PKZKtKs/Screenshot-2026-05-31-at-1-04-03-AM.png'); }}
-                    className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
+                    className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                   />
                   <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Admin</div>
                 </div>
@@ -181,8 +171,7 @@ export default function Projects() {
                   <img 
                     src="https://i.ibb.co/qLSgjBTP/1779904304632.jpg" 
                     alt="CRM Mobile View" 
-                    onClick={(e) => { e.stopPropagation(); setSelectedImage('https://i.ibb.co/qLSgjBTP/1779904304632.jpg'); }}
-                    className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500 cursor-zoom-in"
+                    className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                   />
                   <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Details</div>
                 </div>
@@ -190,71 +179,50 @@ export default function Projects() {
             </div>
           </div>
 
-          <div className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px]">
+          {/* 3. Dukaan Mate Card */}
+          <div 
+            onClick={() => navigate('/project/dukaan-mate')}
+            className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px]"
+          >
             <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">2026</div>
             <div>
-              <h3 className="text-sm uppercase tracking-widest mb-2 mt-4">Dukaan Mate</h3>
+              <h3 className="text-sm uppercase tracking-widest mb-2 mt-4 group-hover:text-accent transition-colors">Dukaan Mate</h3>
               <p className="text-text-secondary text-xs leading-relaxed mb-4">
                 AI retail platform featuring voice "Rush Mode" via Gemini API and interactive dashboards.
               </p>
-              <a href="https://dukaan-mate-final.vercel.app/#/dashboard" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full hover:bg-accent/10 transition-colors mb-4 font-medium w-fit">
-                View Live <ArrowRight className="w-3 h-3" />
-              </a>
+              <div className="group relative inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] mb-4 font-medium w-fit">
+                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <span className="relative z-10 flex items-center gap-2">View Project <ArrowRight className="w-3 h-3" /></span>
+              </div>
             </div>
             <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider mt-auto pt-4 border-t border-[#ffffff14]">
               <span>#React</span><span>#TS</span><span>#GeminiAPI</span>
             </div>
           </div>
 
-          <div className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[200px]">
-            <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">MAR-APR 2026</div>
+          {/* 4. WhatsApp Ordering Card */}
+          <div 
+            onClick={() => navigate('/project/whatsapp-bot')}
+            className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px]"
+          >
+            <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">MAY 2026</div>
             <div>
-              <h3 className="text-sm uppercase tracking-widest mb-2 mt-4">Microsoft Clone</h3>
+              <h3 className="text-sm uppercase tracking-widest mb-2 mt-4 group-hover:text-accent transition-colors">WhatsApp AI Bot</h3>
               <p className="text-text-secondary text-xs leading-relaxed mb-4">
-                Scalable UI implementing dynamic routing, real-time search, and optimized API data rendering.
+                AI-powered WhatsApp Assistant for automated ordering built with n8n and AI agents.
               </p>
-              <a href="https://msclonenst.netlify.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full hover:bg-accent/10 transition-colors mb-4 font-medium w-fit">
-                View Live <ArrowRight className="w-3 h-3" />
-              </a>
+              <div className="group relative inline-flex items-center gap-2 text-xs text-accent border border-accent/40 bg-accent/5 px-4 py-2 rounded-full overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] mb-4 font-medium w-fit">
+                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <span className="relative z-10 flex items-center gap-2">View Project <ArrowRight className="w-3 h-3" /></span>
+              </div>
             </div>
-            <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider mt-auto pt-4 border-t border-[#ffffff14]">
-              <span>#React</span><span>#JS</span><span>#Router</span>
+            <div className="flex gap-3 font-mono text-[10px] text-text-muted tracking-wider mt-auto pt-4 border-t border-[#ffffff14] flex-wrap">
+              <span>#n8n</span><span>#AI_Agents</span><span>#Automation</span>
             </div>
           </div>
 
         </div>
       </div>
-
-      {selectedImage && typeof document !== 'undefined' && createPortal(
-        <div 
-          className="fixed inset-0 z-[99999] flex items-center justify-center bg-[rgba(0,0,0,0.92)] backdrop-blur-sm p-4 sm:p-8"
-          onClick={() => setSelectedImage(null)}
-          style={{ animation: 'lbFadeIn 0.3s ease-out' }}
-        >
-          <style>{`
-            @keyframes lbFadeIn {
-              from { opacity: 0; transform: scale(0.98); }
-              to { opacity: 1; transform: scale(1); }
-            }
-          `}</style>
-          
-          <button 
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/50 hover:text-white p-2 transition-colors z-10"
-            onClick={(e) => { e.stopPropagation(); setSelectedImage(null); }}
-            aria-label="Close lightbox"
-          >
-            <X className="w-8 h-8" />
-          </button>
-          
-          <img 
-            src={selectedImage} 
-            alt="Project full view" 
-            className="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl rounded-sm"
-            onClick={(e) => e.stopPropagation()}
-          />
-        </div>,
-        document.body
-      )}
     </section>
   );
 }

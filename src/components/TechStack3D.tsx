@@ -1,6 +1,6 @@
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { Environment, Loader } from '@react-three/drei';
 import { Physics, RigidBody, BallCollider } from '@react-three/rapier';
 import { EffectComposer, N8AO } from '@react-three/postprocessing';
 import * as THREE from 'three';
@@ -157,7 +157,7 @@ function Cloud({ onTechClick, selectedTech }: { onTechClick: (tech: string) => v
     'React', 'TypeScript', 'Tailwind CSS', 'HTML / CSS',
     'Firebase / Firestore', 'Python', 'REST APIs',
     'n8n', 'Gemini API', 'Hugging Face', 'RAG Pipelines', 'LLMs',
-    'Vercel', 'Netlify', 'GitHub', 'Docker'
+    'Vercel', 'Netlify', '💻 GitHub', 'Docker', '💼 LinkedIn'
   ];
 
   return (
@@ -191,8 +191,9 @@ const techDescriptions: Record<string, string> = {
   'LLMs': "Orchestrated Large Language Models for advanced reasoning and chat interfaces.",
   'Vercel': "Deployed frontend applications with automated CI/CD and edge functions.",
   'Netlify': "Managed continuous deployments and serverless functions for static sites.",
-  'GitHub': "Managed version control and collaborative code repositories.",
-  'Docker': "Containerized applications for consistent development and deployment environments."
+  '💻 GitHub': "Managed version control and collaborative code repositories.",
+  'Docker': "Containerized applications for consistent development and deployment environments.",
+  '💼 LinkedIn': "Professional network and career highlights."
 };
 
 export default function TechStack3D() {
@@ -227,7 +228,7 @@ export default function TechStack3D() {
     .fromTo('.canvas-container',
       { opacity: 0 },
       { opacity: 1, duration: 1.5, ease: "power2.out" },
-      "-=0.4"
+      "-=0.6"
     );
   }, { scope: container });
 
@@ -236,9 +237,9 @@ export default function TechStack3D() {
   };
 
   return (
-    <section id="tech-stack" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#0a0a0a] overflow-hidden min-h-[600px] lg:min-h-[800px]">
+    <section id="tech-stack" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#000000] overflow-hidden min-h-[600px] lg:min-h-[800px]">
       {/* Curtain Overlay */}
-      <div ref={overlayRef} className="absolute inset-0 bg-[#0a0a0a] z-50 pointer-events-none"></div>
+      <div ref={overlayRef} className="absolute inset-0 bg-[#000000] z-50 pointer-events-none"></div>
 
       <div className="w-full relative z-20 flex-shrink-0">
         <div className="tech-eyebrow font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
@@ -251,33 +252,41 @@ export default function TechStack3D() {
       
       <div className="canvas-container absolute inset-0 z-10 pt-32">
         <Canvas shadows camera={{ position: [0, 0, 20], fov: 45 }} gl={{ alpha: true }}>
-          <ambientLight intensity={1.5} />
-          <directionalLight 
-            position={[10, 15, 10]} 
-            intensity={2} 
-            color="#ffffff" 
-            castShadow 
-            shadow-mapSize-width={1024} 
-            shadow-mapSize-height={1024} 
-          />
-          <pointLight position={[-10, 10, 10]} intensity={1.5} color="#ffffff" />
-          <pointLight position={[10, -10, -10]} intensity={1} color="#ffffff" />
-          
-          <Physics gravity={[0, 0, 0]}>
-            <PointerMesh />
-            <Cloud onTechClick={handleTechClick} selectedTech={selectedTech} />
-          </Physics>
-          
-          <Environment preset="city" />
-          <EffectComposer multisampling={4}>
-            <N8AO distanceFalloff={0.2} aoRadius={1} intensity={1} color="#000000" />
-          </EffectComposer>
+          <Suspense fallback={null}>
+            <ambientLight intensity={1.5} />
+            <directionalLight 
+              position={[10, 15, 10]} 
+              intensity={2} 
+              color="#ffffff" 
+              castShadow 
+              shadow-mapSize-width={1024} 
+              shadow-mapSize-height={1024} 
+            />
+            <pointLight position={[-10, 10, 10]} intensity={1.5} color="#ffffff" />
+            <pointLight position={[10, -10, -10]} intensity={1} color="#ffffff" />
+            
+            <Physics gravity={[0, 0, 0]}>
+              <PointerMesh />
+              <Cloud onTechClick={handleTechClick} selectedTech={selectedTech} />
+            </Physics>
+            
+            <Environment preset="city" />
+            <EffectComposer multisampling={4}>
+              <N8AO distanceFalloff={0.2} aoRadius={1} intensity={1} color="#000000" />
+            </EffectComposer>
+          </Suspense>
         </Canvas>
+        <Loader 
+          containerStyles={{ background: 'transparent' }} 
+          innerStyles={{ background: '#111', width: '200px', height: '10px', borderRadius: '5px' }} 
+          barStyles={{ background: '#00ff88', height: '10px', borderRadius: '5px' }} 
+          dataStyles={{ color: '#00ff88', fontFamily: 'monospace', fontSize: '14px', marginTop: '10px' }} 
+        />
       </div>
 
       {selectedTech && (
         <div 
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 bg-[#0a0a0a]/90 backdrop-blur-md border border-accent/30 p-6 rounded-sm min-w-[300px] max-w-[90vw] md:max-w-[400px] shadow-[0_0_30px_rgba(0,255,136,0.1)] flex flex-col gap-3"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 bg-[#000000]/90 backdrop-blur-md border border-accent/30 p-6 rounded-sm min-w-[300px] max-w-[90vw] md:max-w-[400px] shadow-[0_0_30px_rgba(0,255,136,0.1)] flex flex-col gap-3"
           style={{ animation: 'lbFadeIn 0.3s ease-out' }}
         >
           <div className="flex justify-between items-center border-b border-accent/20 pb-2">

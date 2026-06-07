@@ -33,7 +33,7 @@ export default function Contact() {
         stagger: 0.15,
         ease: "power2.out",
       },
-      "-=0.5"
+      "-=0.6"
     );
   }, { scope: container });
 

@@ -64,15 +64,15 @@ export default function Timeline() {
         duration: 1.5,
         ease: "power2.inOut",
       },
-      "-=0.4"
+      "-=0.6"
     )
     .fromTo('.timeline-item',
-      { x: -50, opacity: 0 },
+      { y: 40, opacity: 0 },
       {
-        x: 0,
+        y: 0,
         opacity: 1,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power2.out",
       },
       "-=1.2"
@@ -100,7 +100,7 @@ export default function Timeline() {
             {TIMELINE_DATA.map((item, index) => (
               <div key={index} className="timeline-item relative">
                 {/* Accent dot */}
-                <div className="absolute -left-[29px] md:-left-[45px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                <div className="absolute -left-[28px] md:-left-[44px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
                 
                 <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-start">
                   <div className="font-mono text-accent w-20 shrink-0 mt-1">
