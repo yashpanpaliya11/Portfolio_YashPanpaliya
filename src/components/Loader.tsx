@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import gsap from 'gsap';
+import { playTypingBeep } from '../utils/audio';
 
 export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<'booting' | 'prompt' | 'granted'>('booting');
@@ -15,15 +16,24 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     if (phase !== 'booting') return;
 
+    const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+    let audioCtx: AudioContext | null = null;
+    try {
+      if (AudioContext) {
+        audioCtx = new AudioContext();
+      }
+    } catch(e) {}
+
     try {
       if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
         const msg = new SpeechSynthesisUtterance("System initialization. Establishing secure connection.");
         msg.rate = 0.9;
         msg.pitch = 0.6;
         msg.volume = 0.8;
         setTimeout(() => {
             window.speechSynthesis.speak(msg);
-        }, 300);
+        }, 500);
       }
     } catch (e) {
       console.warn("Speech Synthesis failed or blocked.");
@@ -31,6 +41,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     
     let currentProgress = 0;
     const interval = setInterval(() => {
+      playTypingBeep();
       // Slower progress
       currentProgress += Math.random() * 1.5 + 0.5;
       if (currentProgress >= 100) {
@@ -38,7 +49,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         clearInterval(interval);
         setTimeout(() => {
           setPhase('prompt');
-        }, 800);
+        }, 1500);
       }
       setProgress(Math.floor(currentProgress));
 
@@ -82,22 +93,6 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
           window.speechSynthesis.speak(msg);
         }
       } catch (e) {}
-      
-      // Save to Firebase anonymously
-      try {
-        const { auth, db } = await import('../firebase');
-        const { signInAnonymously } = await import('firebase/auth');
-        const userCredential = await signInAnonymously(auth);
-        
-        const { doc, setDoc, serverTimestamp } = await import('firebase/firestore');
-        
-        await setDoc(doc(db, 'visitors', userCredential.user.uid), {
-          name: inputValue.trim(),
-          createdAt: serverTimestamp()
-        });
-      } catch (error) {
-        console.error('Failed to log visitor:', error);
-      }
 
       setTimeout(() => {
         gsap.to(containerRef.current, {
@@ -141,7 +136,12 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
                   ref={inputRef}
                   type="text" 
                   value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+                  onChange={(e) => {
+                    setInputValue(e.target.value);
+                    if (e.target.value.length > inputValue.length) {
+                      playTypingBeep();
+                    }
+                  }}
                   onKeyDown={handleKeyDown}
                   className="bg-transparent outline-none text-accent text-xl w-full uppercase placeholder:text-accent/30"
                   placeholder="ENTER NAME..."

@@ -3,6 +3,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ArrowDown, Download } from 'lucide-react';
+import { playHoverSound } from '../utils/audio';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,6 +75,7 @@ export default function Hero() {
           <h1 ref={leftText} className="text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light whitespace-nowrap">
             React Developer.
           </h1>
+          <br />
           <h1 ref={rightText} className="text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-text-muted whitespace-nowrap">
             & AI Builder.
           </h1>
@@ -84,21 +86,40 @@ export default function Hero() {
             <span className="w-1.5 h-1.5 bg-accent rounded-full animate-pulse"></span>
             <span className="font-mono text-[10px] uppercase tracking-wider text-text-primary">Open to Internships</span>
           </div>
-          <p className="text-sm md:text-base text-text-secondary leading-relaxed bg-bg-main/80 backdrop-blur-sm rounded-md p-2 -ml-2">
-            Shipping AI automation at Observal · Founding Intern @ Campus Connect | n8n · Python · React | CSE @ Newton School of Technology | Builder by nature 🚀
-          </p>
+          <div className="flex flex-col gap-3 text-sm md:text-base text-text-secondary leading-relaxed bg-bg-main/80 backdrop-blur-sm rounded-md p-4 -ml-4 border border-border-main/50">
+            <div className="flex items-center gap-3 group">
+              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
+              <span><span className="text-text-primary font-medium">Shipping AI automation</span> at Observal</span>
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
+              <span><span className="text-text-primary font-medium">Founding Intern</span> @ Campus Connect</span>
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
+              <span><span className="text-text-primary font-medium">Tech:</span> n8n · Python · React</span>
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
+              <span><span className="text-text-primary font-medium">CSE</span> @ Newton School of Technology</span>
+            </div>
+            <div className="flex items-center gap-3 group">
+              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
+              <span className="text-accent tracking-wide uppercase text-xs font-mono">Builder by nature 🚀</span>
+            </div>
+          </div>
         </div>
         
         <div ref={ctaGroup} className="flex flex-wrap items-center gap-6 opacity-0 w-full mt-12 bg-bg-main/80 backdrop-blur-sm p-4 -ml-4 rounded-md inline-flex max-w-fit">
-          <a href="#projects" className="px-6 py-3 bg-text-primary text-bg-main font-medium text-sm rounded-sm hover:bg-accent hover:text-bg-main transition-colors">
+          <a href="#projects" onMouseEnter={playHoverSound} className="px-6 py-3 bg-text-primary text-bg-main font-medium text-sm rounded-sm hover:bg-accent hover:text-bg-main transition-colors">
             Selected Work ↓
           </a>
-          <a href="https://drive.google.com/file/d/1-FvkEPdEgToE9jeAwqIwkHfI0Eulcnqi/view?usp=sharing" target="_blank" rel="noopener noreferrer" className="group relative px-6 py-3 bg-accent/10 border border-accent/40 text-accent font-medium text-sm rounded-sm overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1-FvkEPdEgToE9jeAwqIwkHfI0Eulcnqi/view?usp=sharing" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="group relative px-6 py-3 bg-accent/10 border border-accent/40 text-accent font-medium text-sm rounded-sm overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] flex items-center gap-2">
             <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
             <Download className="w-5 h-5 drop-shadow-sm stroke-[2] group-hover:-translate-y-0.5 transition-transform relative z-10" /> 
             <span className="relative z-10">Download Resume</span>
           </a>
-          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2 shrink-0">
+          <a href="https://github.com/yashpanpaliya11" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2 shrink-0">
             <Github className="w-5 h-5 drop-shadow-sm stroke-[1.5]" /> View GitHub ↗
           </a>
         </div>

@@ -104,7 +104,7 @@ body {
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 9999999;
   transform: translate(-50%, -50%);
   top: 0;
   left: 0;
@@ -155,3 +155,4 @@ body.cursor-hover .custom-cursor {
     cursor: none !important;
   }
 }
+

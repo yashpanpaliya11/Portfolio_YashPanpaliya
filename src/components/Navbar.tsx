@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Github, Linkedin } from 'lucide-react';
+import { playHoverSound } from '../utils/audio';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -41,6 +42,7 @@ export default function Navbar() {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Contact', href: '#contact' },
+    { name: 'Kernel', href: '/kernel' },
   ];
 
   return (
@@ -50,7 +52,7 @@ export default function Navbar() {
           hideNav ? '-translate-x-full' : 'translate-x-0'
         }`}
       >
-        <a href="#" className="font-serif text-2xl tracking-tighter text-accent z-50 relative">
+        <a href="#" onMouseEnter={playHoverSound} className="font-serif text-2xl tracking-tighter text-accent z-50 relative">
           YP.
         </a>
         
@@ -59,8 +61,11 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
+              onMouseEnter={playHoverSound}
               className="hover:text-accent hover:underline decoration-accent underline-offset-4 transition-colors"
-              onClick={() => setMenuOpen(false)}
+              onClick={() => {
+                setMenuOpen(false);
+              }}
             >
               {link.name}
             </a>
@@ -68,8 +73,8 @@ export default function Navbar() {
         </nav>
 
         <div className="flex flex-col gap-4 text-text-muted font-mono text-[10px] uppercase tracking-widest">
-          <a href="https://github.com/yashpanpaliya11" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Github className="w-4 h-4 drop-shadow-md stroke-[1.5]" />GH.</a>
-          <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Linkedin className="w-4 h-4 drop-shadow-md stroke-[1.5]" />IN.</a>
+          <a href="https://github.com/yashpanpaliya11" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Github className="w-4 h-4 drop-shadow-md stroke-[1.5]" />GH.</a>
+          <a href="https://www.linkedin.com/in/yash-panpaliya-ba95a0388/" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center justify-center gap-1 flex-col"><Linkedin className="w-4 h-4 drop-shadow-md stroke-[1.5]" />IN.</a>
         </div>
       </aside>
 
@@ -85,6 +90,7 @@ export default function Navbar() {
           
           <button 
             className="md:hidden z-50 relative text-accent p-2"
+            onMouseEnter={playHoverSound}
             onClick={toggleMenu}
             aria-label="Toggle Menu"
           >

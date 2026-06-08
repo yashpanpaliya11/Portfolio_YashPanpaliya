@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { playHoverSound } from '../utils/audio';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,6 +70,7 @@ export default function Projects() {
           {/* 1. AI Voice Agent Card */}
           <div 
             onClick={() => navigate('/project/voice-agent')}
+            onMouseEnter={playHoverSound}
             className="project-card cursor-pointer md:col-span-2 group bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300"
           >
             <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1 flex items-center gap-2">
@@ -123,6 +125,7 @@ export default function Projects() {
           {/* 2. CRM Dashboard Card */}
           <div 
             onClick={() => navigate('/project/crm-dashboard')}
+            onMouseEnter={playHoverSound}
             className="project-card md:col-span-2 group cursor-pointer bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300"
           >
             <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1">FEB-MAR 2026</div>
@@ -182,6 +185,7 @@ export default function Projects() {
           {/* 3. Dukaan Mate Card */}
           <div 
             onClick={() => navigate('/project/dukaan-mate')}
+            onMouseEnter={playHoverSound}
             className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px]"
           >
             <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">2026</div>
@@ -203,6 +207,7 @@ export default function Projects() {
           {/* 4. WhatsApp Ordering Card */}
           <div 
             onClick={() => navigate('/project/whatsapp-bot')}
+            onMouseEnter={playHoverSound}
             className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px]"
           >
             <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">MAY 2026</div>

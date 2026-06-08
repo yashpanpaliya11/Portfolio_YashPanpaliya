@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import ProjectDetails from './components/ProjectDetails.tsx';
+import HackingKernel from './components/HackingKernel.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
@@ -11,6 +12,7 @@ createRoot(document.getElementById('root')!).render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/project/:id" element={<ProjectDetails />} />
+        <Route path="/kernel" element={<HackingKernel />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

@@ -17,13 +17,21 @@ import Footer from './components/Footer';
 import ScrollSmootherInit from './components/ScrollSmootherInit';
 import Loader from './components/Loader';
 import { useState } from 'react';
+import { playClickSound } from './utils/audio';
+
+let hasSeenLoaderThisSession = false;
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!hasSeenLoaderThisSession);
+
+  const handleLoaderComplete = () => {
+    hasSeenLoaderThisSession = true;
+    setLoading(false);
+  };
 
   return (
     <div className="min-h-screen bg-bg-main text-text-primary flex">
-      {loading && <Loader onComplete={() => setLoading(false)} />}
+      {loading && <Loader onComplete={handleLoaderComplete} />}
       <CustomCursor />
       <Navbar />
       <ScrollSmootherInit />

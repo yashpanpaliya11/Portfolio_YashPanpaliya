@@ -19,14 +19,29 @@ service cloud.firestore {
              data.createdAt == request.time;
     }
 
+    // Validation Blueprint for ContactMessage
+    function isValidContactMessage(data) {
+      return data.keys().hasAll(['name', 'email', 'message', 'createdAt']) && 
+             data.keys().size() == 4 &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.email is string && data.email.size() > 0 && data.email.size() <= 200 &&
+             data.message is string && data.message.size() > 0 && data.message.size() <= 5000 &&
+             data.createdAt == request.time;
+    }
+
     // Collections
     match /visitors/{visitorId} {
-      allow create: if isSignedIn() && 
-                    visitorId == request.auth.uid && 
-                    isValidVisitor(incoming());
+      allow create: if isValidVisitor(incoming());
       
       // Allow read only to the user who created it
       allow read: if isSignedIn() && visitorId == request.auth.uid;
+    }
+
+    match /messages/{messageId} {
+      // Anyone can create a message (we'll generate an ID on client)
+      allow create: if isValidContactMessage(incoming());
+      
+      allow read: if false; // Only admin can read
     }
   }
 }
