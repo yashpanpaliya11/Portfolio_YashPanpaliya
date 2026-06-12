@@ -4,11 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import ProjectDetails from './components/ProjectDetails.tsx';
 import HackingKernel from './components/HackingKernel.tsx';
+import Analytics from './components/Analytics.tsx';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
+      <Analytics />
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/project/:id" element={<ProjectDetails />} />

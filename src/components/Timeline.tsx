@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import FadeIn from './FadeIn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,38 +46,7 @@ export default function Timeline() {
       transformOrigin: "top",
       duration: 1,
       ease: "power2.inOut",
-    })
-    .fromTo('.section-eyebrow',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.5"
-    )
-    .fromTo('h2',
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.6"
-    )
-    .fromTo('.timeline-line',
-      { scaleY: 0 },
-      {
-        scaleY: 1,
-        transformOrigin: "top",
-        duration: 1.5,
-        ease: "power2.inOut",
-      },
-      "-=0.6"
-    )
-    .fromTo('.timeline-item',
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power2.out",
-      },
-      "-=1.2"
-    );
+    });
   }, { scope: container });
 
   return (
@@ -85,37 +55,43 @@ export default function Timeline() {
       <div ref={overlayRef} className="absolute inset-0 bg-bg-main z-50 pointer-events-none"></div>
 
       <div className="w-full relative z-10">
-        <div className="section-eyebrow mb-12">
-          02 // CAREER HIGHLIGHTS
-        </div>
+        <FadeIn delay={0.2}>
+          <div className="section-eyebrow mb-12">
+            02 // CAREER HIGHLIGHTS
+          </div>
+        </FadeIn>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light">
-          The Journey So Far.
-        </h2>
+        <FadeIn delay={0.3}>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light">
+            The Journey So Far.
+          </h2>
+        </FadeIn>
         
         <div className="relative pl-6 md:pl-10">
-          <div className="timeline-line absolute left-0 top-2 bottom-2 w-[1px] bg-border-hover"></div>
+          <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-border-hover"></div>
           
           <div className="space-y-16">
             {TIMELINE_DATA.map((item, index) => (
-              <div key={index} className="timeline-item relative">
-                {/* Accent dot */}
-                <div className="absolute -left-[28px] md:-left-[44px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
-                
-                <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-start">
-                  <div className="font-mono text-accent w-20 shrink-0 mt-1">
-                    {item.year}
-                  </div>
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-medium mb-3 text-text-primary bg-bg-card border border-border-main inline-block px-4 py-1.5 rounded-sm">
-                      {item.title}
-                    </h3>
-                    <p className="text-text-secondary leading-relaxed max-w-xl text-sm md:text-base mt-2">
-                      {item.desc}
-                    </p>
+              <FadeIn key={index} delay={0.4 + index * 0.1}>
+                <div className="relative">
+                  {/* Accent dot */}
+                  <div className="absolute -left-[28px] md:-left-[44px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                  
+                  <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-start">
+                    <div className="font-mono text-accent w-20 shrink-0 mt-1">
+                      {item.year}
+                    </div>
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-medium mb-3 text-text-primary bg-bg-card border border-border-main inline-block px-4 py-1.5 rounded-sm">
+                        {item.title}
+                      </h3>
+                      <p className="text-text-secondary leading-relaxed max-w-xl text-sm md:text-base mt-2">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
         </div>

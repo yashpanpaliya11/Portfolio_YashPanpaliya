@@ -7,6 +7,7 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import FadeIn from './FadeIn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -215,16 +216,6 @@ export default function TechStack3D() {
       duration: 1,
       ease: "power2.inOut",
     })
-    .fromTo('.tech-eyebrow',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.5"
-    )
-    .fromTo('.tech-title',
-      { y: 50, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.6"
-    )
     .fromTo('.canvas-container',
       { opacity: 0 },
       { opacity: 1, duration: 1.5, ease: "power2.out" },
@@ -242,12 +233,16 @@ export default function TechStack3D() {
       <div ref={overlayRef} className="absolute inset-0 bg-[#000000] z-50 pointer-events-none"></div>
 
       <div className="w-full relative z-20 flex-shrink-0">
-        <div className="tech-eyebrow font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
-          04 // ARSENAL
-        </div>
-        <h2 className="tech-title text-5xl md:text-7xl font-sans tracking-tighter mb-4 text-white">
-          MY TECH STACK
-        </h2>
+        <FadeIn delay={0.2}>
+          <div className="font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
+            04 // ARSENAL
+          </div>
+        </FadeIn>
+        <FadeIn delay={0.3}>
+          <h2 className="text-5xl md:text-7xl font-sans tracking-tighter mb-4 text-white">
+            MY TECH STACK
+          </h2>
+        </FadeIn>
       </div>
       
       <div className="canvas-container absolute inset-0 z-10 pt-32">

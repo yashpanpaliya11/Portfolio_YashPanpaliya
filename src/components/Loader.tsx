@@ -4,13 +4,40 @@ import { playTypingBeep } from '../utils/audio';
 
 export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [phase, setPhase] = useState<'booting' | 'prompt' | 'granted'>('booting');
-  const [text, setText] = useState('');
   const [progress, setProgress] = useState(0);
   const [inputValue, setInputValue] = useState('');
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
-  const textChars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ@#$%&*+";
+  const [logs, setLogs] = useState<string[]>([]);
+  const logsRef = useRef<HTMLDivElement>(null);
+
+  const hackingLogs = [
+    "[ OK ] Started Show Plymouth Boot Screen.",
+    "[ OK ] Reached target Paths.",
+    "[ OK ] Reached target Basic System.",
+    "Starting Network Manager...",
+    "[ OK ] Started Network Manager.",
+    "Starting WPA supplicant...",
+    "[ OK ] Started WPA supplicant.",
+    "Starting PostgreSQL RDBMS...",
+    "[ OK ] Started PostgreSQL RDBMS.",
+    "Starting Metasploit RPC Server...",
+    "Initializing auxiliary modules... [ 1243 modules loaded ]",
+    "Initializing exploit modules... [ 2102 modules loaded ]",
+    "Connecting to proxy chains...",
+    "ProxyChains-3.1 (http://proxychains.sf.net)",
+    "[+] Dynamic chain ... 127.0.0.1:9050 ... 192.168.1.45:80 ... OK",
+    "Scanning target network [10.0.0.0/24]",
+    "Discovered open port 22/tcp on 10.0.0.15",
+    "Discovered open port 80/tcp on 10.0.0.15",
+    "Initiating brute force protocol...",
+    "Bypassing IDS/IPS signatures...",
+    "Payload injected successfully at 0x00007FF8B.",
+    "Elevating privileges...",
+    "root access acquired.",
+    "Mounting secure local environment..."
+  ];
 
   // Booting Phase
   useEffect(() => {
@@ -40,10 +67,24 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     }
     
     let currentProgress = 0;
+    let logIndex = 0;
+
     const interval = setInterval(() => {
-      playTypingBeep();
       // Slower progress
       currentProgress += Math.random() * 1.5 + 0.5;
+      
+      if (logIndex < hackingLogs.length && Math.random() > 0.3) {
+        setLogs(prev => [...prev.slice(-20), hackingLogs[logIndex]]);
+        logIndex++;
+        if (logsRef.current) {
+          logsRef.current.scrollTop = logsRef.current.scrollHeight;
+        }
+      }
+
+      if (currentProgress % 10 < 3) {
+         playTypingBeep();
+      }
+
       if (currentProgress >= 100) {
         currentProgress = 100;
         clearInterval(interval);
@@ -52,10 +93,6 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         }, 1500);
       }
       setProgress(Math.floor(currentProgress));
-
-      // Scramble text
-      const randomText = Array.from({ length: 12 }).map(() => textChars[Math.floor(Math.random() * textChars.length)]).join('');
-      setText(randomText);
 
     }, 80);
 
@@ -120,8 +157,15 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       <div className="relative z-20 flex flex-col items-center gap-12 w-full max-w-3xl px-6">
         
         {phase === 'booting' && (
-           <div className="text-accent text-3xl md:text-5xl lg:text-7xl tracking-[0.2em] font-bold text-center glow-text h-16 md:h-24">
-             {text}
+           <div className="flex flex-col items-center w-full">
+             <div 
+               ref={logsRef}
+               className="w-full max-w-2xl h-[40vh] overflow-y-hidden text-accent text-xs sm:text-sm font-mono text-left flex flex-col justify-end mb-8 whitespace-pre-wrap leading-relaxed glow-text"
+             >
+               {logs.map((log, i) => (
+                 <div key={i}>{log}</div>
+               ))}
+             </div>
            </div>
         )}
 

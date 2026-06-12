@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
+import FadeIn from './FadeIn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,17 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
       transformOrigin: "top",
       duration: 1,
       ease: "power2.inOut",
-    })
-    .fromTo('.exp-eyebrow',
-      { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" },
-      "-=0.5"
-    )
-    .fromTo('.exp-card',
-      { y: 40, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power2.out" },
-      "-=0.6"
-    );
+    });
   }, { scope: container });
 
   return (
@@ -41,14 +32,17 @@ gsap.registerPlugin(ScrollTrigger);
       <div ref={overlayRef} className="absolute inset-0 bg-black z-50 pointer-events-none"></div>
 
       <div className="w-full relative z-10">
-        <div className="exp-eyebrow font-mono text-[10px] tracking-wider text-text-muted uppercase mb-12">
-          EXPERIENCE // HIGHLIGHT
-        </div>
+        <FadeIn delay={0.2}>
+          <div className="font-mono text-[10px] tracking-wider text-text-muted uppercase mb-12">
+            EXPERIENCE // HIGHLIGHT
+          </div>
+        </FadeIn>
 
         <div className="flex flex-col gap-8">
-          <div 
-            className="exp-card relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
-          >
+          <FadeIn delay={0.3}>
+            <div 
+              className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
+            >
             {/* Subtle left accent */}
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffffff14] group-hover:bg-[#00ff88] transition-colors"></div>
 
@@ -92,10 +86,12 @@ gsap.registerPlugin(ScrollTrigger);
               </div>
             </div>
           </div>
+          </FadeIn>
 
-          <div 
-            className="exp-card relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
-          >
+          <FadeIn delay={0.4}>
+            <div 
+              className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
+            >
             {/* Subtle left accent */}
             <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffffff14] group-hover:bg-[#00ff88] transition-colors"></div>
 
@@ -144,6 +140,7 @@ gsap.registerPlugin(ScrollTrigger);
             />
           </div>
         </div>
+        </FadeIn>
         </div>
       </div>
     </section>
