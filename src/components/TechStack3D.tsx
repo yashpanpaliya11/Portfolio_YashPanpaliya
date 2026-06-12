@@ -196,6 +196,15 @@ const techDescriptions: Record<string, string> = {
   '💼 LinkedIn': "Professional network and career highlights."
 };
 
+function CameraRig() {
+  useFrame((state) => {
+    state.camera.position.x = THREE.MathUtils.lerp(state.camera.position.x, (state.pointer.x * 5), 0.05);
+    state.camera.position.y = THREE.MathUtils.lerp(state.camera.position.y, (state.pointer.y * 5), 0.05);
+    state.camera.lookAt(0, 0, 0);
+  });
+  return null;
+}
+
 export default function TechStack3D() {
   const container = useRef<HTMLDivElement>(null);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
@@ -221,7 +230,7 @@ export default function TechStack3D() {
 
   return (
     <section id="tech-stack" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#000000] overflow-hidden min-h-[600px] lg:min-h-[800px]">
-      <div className="w-full relative z-20 flex-shrink-0">
+      <div className="w-full relative z-20 flex-shrink-0" data-speed="1.15">
         <div className="font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
           04 // ARSENAL
         </div>
@@ -232,6 +241,7 @@ export default function TechStack3D() {
       
       <div className="canvas-container absolute inset-0 z-10 pt-32">
         <Canvas shadows camera={{ position: [0, 0, 20], fov: 45 }} gl={{ alpha: true }}>
+          <CameraRig />
           <Suspense fallback={null}>
             <ambientLight intensity={1.5} />
             <directionalLight 

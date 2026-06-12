@@ -15,8 +15,9 @@ import Projects from './components/Projects';
 import PaidWorks from './components/PaidWorks';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ScrollSmootherInit from './components/ScrollSmootherInit';
 import Loader from './components/Loader';
+import BackgroundGrid from './components/BackgroundGrid';
+import SmoothScrollInit from './components/SmoothScrollInit';
 import { useState } from 'react';
 import { playClickSound } from './utils/audio';
 
@@ -31,29 +32,32 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-bg-main text-text-primary flex">
-      {loading && <Loader onComplete={handleLoaderComplete} />}
-      <CustomCursor />
-      <Navbar />
-      <ScrollSmootherInit />
-      
-      <div id="smooth-wrapper" className="flex-1 w-full relative">
-        <div id="smooth-content" className="md:pl-20 w-full flex flex-col">
-          <main className="flex-1 flex flex-col w-full relative">
-            <Hero />
-            <Marquee />
-            <About />
-            <Timeline />
-            <Experience />
-            <TechStack3D />
-            <Projects />
-            <PaidWorks />
-            <Contact />
-            <Footer />
-          </main>
+    <>
+      <SmoothScrollInit />
+      <div className="min-h-screen bg-bg-main text-text-primary flex">
+        <BackgroundGrid />
+        {loading && <Loader onComplete={handleLoaderComplete} />}
+        <CustomCursor />
+        <Navbar />
+        
+        <div className="flex-1 w-full relative">
+          <div className="md:pl-20 w-full flex flex-col">
+            <main className="flex-1 flex flex-col w-full relative">
+              <Hero />
+              <Marquee />
+              <About />
+              <Timeline />
+              <Experience />
+              <TechStack3D />
+              <Projects />
+              <PaidWorks />
+              <Contact />
+              <Footer />
+            </main>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

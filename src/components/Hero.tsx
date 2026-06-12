@@ -66,7 +66,7 @@ export default function Hero() {
 
   return (
     <section ref={container} className="relative min-h-screen flex flex-col md:flex-row border-b border-border-main bg-bg-main overflow-hidden">
-      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 p-8 md:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative z-20">
+      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 p-8 md:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative z-20" data-speed="1.1">
         <div className="section-eyebrow mb-8">
           DEVELOPER. BUILDER. STUDENT.
         </div>

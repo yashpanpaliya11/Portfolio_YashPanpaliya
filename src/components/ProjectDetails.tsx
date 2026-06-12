@@ -4,8 +4,8 @@ import { ArrowLeft, ExternalLink, X } from 'lucide-react';
 import { createPortal } from 'react-dom';
 import CustomCursor from './CustomCursor';
 import gsap from 'gsap';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
 import { projects } from '../data/projects';
+import SmoothScrollInit from './SmoothScrollInit';
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>();
@@ -46,8 +46,10 @@ export default function ProjectDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-bg-main text-text-primary relative selection:bg-accent selection:text-black font-sans font-light">
-      <CustomCursor />
+    <>
+      <SmoothScrollInit />
+      <div className="min-h-screen bg-bg-main text-text-primary relative selection:bg-accent selection:text-black font-sans font-light">
+        <CustomCursor />
       
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full z-50 p-6 flex justify-between items-center bg-bg-main/80 backdrop-blur-md border-b border-[#ffffff14]">
@@ -180,6 +182,7 @@ export default function ProjectDetails() {
         </div>,
         document.body
       )}
-    </div>
+      </div>
+    </>
   );
 }

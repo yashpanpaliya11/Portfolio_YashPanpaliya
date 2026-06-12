@@ -45,7 +45,7 @@ export default function About() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-16">
-          <div className="space-y-6 text-text-secondary md:text-lg leading-relaxed font-light">
+          <div className="space-y-6 text-text-secondary md:text-lg leading-relaxed font-light" data-speed="1.05">
             <p>
               I am a B.Tech CSE student (Class of 2029) at Ajeenkya DY Patil University (Newton School of Technology). I am a software engineer skilled in React, Python, and JavaScript, with a strong foundation in DSA.
             </p>
@@ -54,7 +54,7 @@ export default function About() {
             </p>
           </div>
           
-          <div className="flex flex-col justify-end">
+          <div className="flex flex-col justify-end" data-speed="0.95">
             <div className="bg-bg-secondary p-6 border border-border-main rounded-sm h-fit w-full max-w-sm space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
