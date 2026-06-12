@@ -41,6 +41,7 @@ export default function Navbar() {
     { name: 'Journey', href: '#journey' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Freelance', href: '#paid-works' },
     { name: 'Contact', href: '#contact' },
     { name: 'Kernel', href: '/kernel' },
   ];

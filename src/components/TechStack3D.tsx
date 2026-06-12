@@ -7,7 +7,6 @@ import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import FadeIn from './FadeIn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -199,10 +198,10 @@ const techDescriptions: Record<string, string> = {
 
 export default function TechStack3D() {
   const container = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
   useGSAP(() => {
+    // Just keeping the container structure
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: container.current,
@@ -210,16 +209,9 @@ export default function TechStack3D() {
       }
     });
 
-    tl.to(overlayRef.current, {
-      scaleY: 0,
-      transformOrigin: "top",
-      duration: 1,
-      ease: "power2.inOut",
-    })
-    .fromTo('.canvas-container',
+    tl.fromTo('.canvas-container',
       { opacity: 0 },
-      { opacity: 1, duration: 1.5, ease: "power2.out" },
-      "-=0.6"
+      { opacity: 1, duration: 1.5, ease: "power2.out" }
     );
   }, { scope: container });
 
@@ -229,20 +221,13 @@ export default function TechStack3D() {
 
   return (
     <section id="tech-stack" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#000000] overflow-hidden min-h-[600px] lg:min-h-[800px]">
-      {/* Curtain Overlay */}
-      <div ref={overlayRef} className="absolute inset-0 bg-[#000000] z-50 pointer-events-none"></div>
-
       <div className="w-full relative z-20 flex-shrink-0">
-        <FadeIn delay={0.2}>
-          <div className="font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
-            04 // ARSENAL
-          </div>
-        </FadeIn>
-        <FadeIn delay={0.3}>
-          <h2 className="text-5xl md:text-7xl font-sans tracking-tighter mb-4 text-white">
-            MY TECH STACK
-          </h2>
-        </FadeIn>
+        <div className="font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
+          04 // ARSENAL
+        </div>
+        <h2 className="text-5xl md:text-7xl font-sans tracking-tighter mb-4 text-white">
+          MY TECH STACK
+        </h2>
       </div>
       
       <div className="canvas-container absolute inset-0 z-10 pt-32">

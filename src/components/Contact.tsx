@@ -2,7 +2,6 @@ import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import FadeIn from './FadeIn';
 import { ArrowRight, Mail, Linkedin, Github, Rocket, Send } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
 
@@ -10,26 +9,13 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const container = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 60%"
-      }
-    });
-
-    tl.to(overlayRef.current, {
-      scaleY: 0,
-      transformOrigin: "top",
-      duration: 1,
-      ease: "power2.inOut",
-    });
+    // Basic setup
   }, { scope: container });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -56,40 +42,29 @@ export default function Contact() {
 
   return (
     <section id="contact" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 py-32 md:py-48 bg-bg-secondary overflow-hidden">
-      {/* Curtain Overlay */}
-      <div ref={overlayRef} className="absolute inset-0 bg-bg-main z-50 pointer-events-none"></div>
-
       <div className="w-full relative z-10 flex flex-col xl:flex-row gap-16 md:gap-24 justify-between">
         
         <div className="w-full xl:max-w-xl">
-          <FadeIn delay={0.2}>
-            <div className="section-eyebrow mb-12">
-              06 // LET'S BUILD SOMETHING
-            </div>
-          </FadeIn>
+          <div className="section-eyebrow mb-12">
+            06 // LET'S BUILD SOMETHING
+          </div>
           
-          <FadeIn delay={0.3}>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 font-light">
-              Ready to Collaborate?
-            </h2>
-          </FadeIn>
+          <h2 className="text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 font-light">
+            Ready to Collaborate?
+          </h2>
           
-          <FadeIn delay={0.4}>
-            <p className="text-text-secondary text-lg leading-relaxed mb-12 font-light">
-              Currently open for new opportunities, freelance work, and interesting collaborations. Typical response: within 24 hours.
-            </p>
-          </FadeIn>
+          <p className="text-text-secondary text-lg leading-relaxed mb-12 font-light">
+            Currently open for new opportunities, freelance work, and interesting collaborations. Typical response: within 24 hours.
+          </p>
           
-          <FadeIn delay={0.5}>
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-sm border border-border-main bg-bg-card font-mono text-[10px] uppercase tracking-widest text-text-secondary">
-              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
-              Systems Operational
-            </div>
-          </FadeIn>
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-sm border border-border-main bg-bg-card font-mono text-[10px] uppercase tracking-widest text-text-secondary">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></div>
+            Systems Operational
+          </div>
         </div>
         
         <div className="w-full xl:max-w-xl flex-shrink-0 flex flex-col gap-16">
-          <FadeIn delay={0.6} className="w-full">
+          <div className="w-full">
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
@@ -166,9 +141,9 @@ export default function Contact() {
               </div>
             )}
           </form>
-          </FadeIn>
+          </div>
 
-          <FadeIn delay={0.7} className="w-full">
+          <div className="w-full">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-sm uppercase tracking-widest pt-8 border-t border-border-main">
               
               <a 
@@ -243,7 +218,7 @@ export default function Contact() {
               </a>
 
             </div>
-          </FadeIn>
+          </div>
         </div>
         
       </div>

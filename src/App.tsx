@@ -12,6 +12,7 @@ import Timeline from './components/Timeline';
 import Experience from './components/Experience';
 import TechStack3D from './components/TechStack3D';
 import Projects from './components/Projects';
+import PaidWorks from './components/PaidWorks';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollSmootherInit from './components/ScrollSmootherInit';
@@ -46,6 +47,7 @@ export default function App() {
             <Experience />
             <TechStack3D />
             <Projects />
+            <PaidWorks />
             <Contact />
             <Footer />
           </main>

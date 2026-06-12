@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import FadeIn from './FadeIn';
 import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { playHoverSound } from '../utils/audio';
@@ -11,48 +10,27 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
   const container = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 60%",
-      }
-    });
-
-    // Curtain reveal
-    tl.to(overlayRef.current, {
-      scaleY: 0,
-      transformOrigin: "top",
-      duration: 1,
-      ease: "power2.inOut",
-    });
+    // Keeping useGSAP for structure but removing curtain animation
   }, { scope: container });
 
   return (
     <section id="projects" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
-      {/* Curtain Overlay */}
-      <div ref={overlayRef} className="absolute inset-0 bg-bg-main z-50 pointer-events-none"></div>
-
       <div className="w-full relative z-10">
-        <FadeIn delay={0.2}>
-          <div className="section-eyebrow mb-12">
-            05 // SELECTED WORK
-          </div>
-        </FadeIn>
+        <div className="section-eyebrow mb-12">
+          05 // SELECTED WORK
+        </div>
         
-        <FadeIn delay={0.3}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-16 max-w-2xl font-light">
-            Projects & Builds.
-          </h2>
-        </FadeIn>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-16 max-w-2xl font-light">
+          Projects & Builds.
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* 1. AI Voice Agent Card */}
-          <FadeIn delay={0.4} fullWidth className="md:col-span-2 h-full flex flex-col">
+          <div className="md:col-span-2 h-full flex flex-col">
             <div 
               onClick={() => navigate('/project/voice-agent')}
               onMouseEnter={playHoverSound}
@@ -106,10 +84,10 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* 2. CRM Dashboard Card */}
-          <FadeIn delay={0.5} fullWidth className="md:col-span-2 h-full flex flex-col">
+          <div className="md:col-span-2 h-full flex flex-col">
             <div 
               onClick={() => navigate('/project/crm-dashboard')}
               onMouseEnter={playHoverSound}
@@ -168,10 +146,10 @@ export default function Projects() {
                 </div>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* 3. Dukaan Mate Card */}
-          <FadeIn delay={0.6} fullWidth className="h-full">
+          <div className="h-full">
             <div 
               onClick={() => navigate('/project/dukaan-mate')}
               onMouseEnter={playHoverSound}
@@ -192,10 +170,10 @@ export default function Projects() {
                 <span>#React</span><span>#TS</span><span>#GeminiAPI</span>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
           {/* 4. WhatsApp Ordering Card */}
-          <FadeIn delay={0.7} fullWidth className="h-full">
+          <div className="h-full">
             <div 
               onClick={() => navigate('/project/whatsapp-bot')}
               onMouseEnter={playHoverSound}
@@ -216,7 +194,7 @@ export default function Projects() {
                 <span>#n8n</span><span>#AI_Agents</span><span>#Automation</span>
               </div>
             </div>
-          </FadeIn>
+          </div>
 
         </div>
       </div>

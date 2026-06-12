@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import FadeIn from './FadeIn';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,67 +30,45 @@ const TIMELINE_DATA = [
 
 export default function Timeline() {
   const container = useRef<HTMLDivElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container.current,
-        start: "top 60%"
-      }
-    });
-
-    tl.to(overlayRef.current, {
-      scaleY: 0,
-      transformOrigin: "top",
-      duration: 1,
-      ease: "power2.inOut",
-    });
+    // Basic setup if any future timelines are needed
   }, { scope: container });
 
   return (
     <section id="journey" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-secondary overflow-hidden">
-      {/* Curtain Overlay */}
-      <div ref={overlayRef} className="absolute inset-0 bg-bg-main z-50 pointer-events-none"></div>
-
       <div className="w-full relative z-10">
-        <FadeIn delay={0.2}>
-          <div className="section-eyebrow mb-12">
-            02 // CAREER HIGHLIGHTS
-          </div>
-        </FadeIn>
+        <div className="section-eyebrow mb-12">
+          02 // CAREER HIGHLIGHTS
+        </div>
         
-        <FadeIn delay={0.3}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light">
-            The Journey So Far.
-          </h2>
-        </FadeIn>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light">
+          The Journey So Far.
+        </h2>
         
         <div className="relative pl-6 md:pl-10">
           <div className="absolute left-0 top-2 bottom-2 w-[1px] bg-border-hover"></div>
           
           <div className="space-y-16">
             {TIMELINE_DATA.map((item, index) => (
-              <FadeIn key={index} delay={0.4 + index * 0.1}>
-                <div className="relative">
-                  {/* Accent dot */}
-                  <div className="absolute -left-[28px] md:-left-[44px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
-                  
-                  <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-start">
-                    <div className="font-mono text-accent w-20 shrink-0 mt-1">
-                      {item.year}
-                    </div>
-                    <div>
-                      <h3 className="text-xl md:text-2xl font-medium mb-3 text-text-primary bg-bg-card border border-border-main inline-block px-4 py-1.5 rounded-sm">
-                        {item.title}
-                      </h3>
-                      <p className="text-text-secondary leading-relaxed max-w-xl text-sm md:text-base mt-2">
-                        {item.desc}
-                      </p>
-                    </div>
+              <div key={index} className="relative">
+                {/* Accent dot */}
+                <div className="absolute -left-[28px] md:-left-[44px] top-1.5 w-2 h-2 rounded-full bg-text-primary shadow-[0_0_8px_rgba(255,255,255,0.5)]"></div>
+                
+                <div className="flex flex-col md:flex-row md:gap-12 gap-3 items-start">
+                  <div className="font-mono text-accent w-20 shrink-0 mt-1">
+                    {item.year}
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-medium mb-3 text-text-primary bg-bg-card border border-border-main inline-block px-4 py-1.5 rounded-sm">
+                      {item.title}
+                    </h3>
+                    <p className="text-text-secondary leading-relaxed max-w-xl text-sm md:text-base mt-2">
+                      {item.desc}
+                    </p>
                   </div>
                 </div>
-              </FadeIn>
+              </div>
             ))}
           </div>
         </div>
