@@ -228,12 +228,12 @@ export default function TechStack3D() {
   };
 
   return (
-    <section id="tech-stack" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#000000] overflow-hidden min-h-[600px] lg:min-h-[800px]">
+    <section id="tech-stack" ref={container} className="relative flex flex-col p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden min-h-[600px] lg:min-h-[800px]">
       <div className="w-full relative z-20 flex-shrink-0" data-speed="1.15">
-        <div className="font-mono text-[10px] tracking-wider text-accent uppercase mb-4">
+        <div className="section-eyebrow mb-4 text-accent">
           04 // ARSENAL
         </div>
-        <h2 className="text-5xl md:text-7xl font-sans tracking-tighter mb-4 text-white">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4 max-w-2xl font-light text-shine">
           MY TECH STACK
         </h2>
       </div>

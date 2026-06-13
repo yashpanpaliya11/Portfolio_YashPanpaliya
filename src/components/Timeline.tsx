@@ -36,13 +36,13 @@ export default function Timeline() {
   }, { scope: container });
 
   return (
-    <section id="journey" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-secondary overflow-hidden">
+    <section id="journey" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-secondary overflow-hidden">
       <div className="w-full relative z-10">
         <div className="section-eyebrow mb-12">
           02 // CAREER HIGHLIGHTS
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light text-shine">
           The Journey So Far.
         </h2>
         

@@ -149,10 +149,82 @@ body.cursor-hover .custom-cursor {
   }
 }
 
+.text-shine {
+  background: linear-gradient(
+    120deg,
+    var(--text-primary) 0%,
+    var(--text-primary) 40%,
+    #888888 48%,
+    #ffffff 50%,
+    #888888 52%,
+    var(--text-primary) 60%,
+    var(--text-primary) 100%
+  );
+  background-size: 250% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: textShine 4s linear infinite;
+}
+
+@keyframes textShine {
+  to {
+    background-position: 250% center;
+  }
+}
+
+.text-shine-muted {
+  background: linear-gradient(
+    120deg,
+    var(--text-muted) 0%,
+    var(--text-muted) 40%,
+    var(--text-secondary) 45%,
+    var(--text-primary) 50%,
+    var(--text-secondary) 55%,
+    var(--text-muted) 60%,
+    var(--text-muted) 100%
+  );
+  background-size: 250% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: textShine 4s linear infinite;
+}
+
 /* Hover effect helper */
 @media (pointer: fine) {
   * {
     cursor: none !important;
   }
+}
+
+/* Preferences Overrides */
+html.light-theme {
+  --bg: #ffffff;
+  --bg-secondary: #f4f4f4;
+  --bg-card: #ffffff;
+  --text-primary: #000000;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --border: rgba(0,0,0,0.1);
+  --border-hover: rgba(0, 255, 136, 0.5);
+  
+  --color-bg-main: #ffffff;
+  --color-bg-secondary: #f4f4f4;
+  --color-bg-card: #ffffff;
+  --color-text-primary: #000000;
+  --color-text-secondary: #555555;
+  --color-text-muted: #888888;
+  --color-border-main: rgba(0,0,0,0.1);
+}
+
+html.disable-animations *, html.disable-animations *::before, html.disable-animations *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+html.reduce-animations *, html.reduce-animations *::before, html.reduce-animations *::after {
+  animation-duration: 0.5s !important;
+  transition-duration: 0.2s !important;
 }
 

@@ -1,13 +1,57 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [hideNav, setHideNav] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
+  
+  const menuRef = useRef<HTMLDivElement>(null);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!menuRef.current || !navRef.current) return;
+
+    const links = navRef.current.querySelectorAll('.mobile-link');
+    
+    if (menuOpen) {
+      gsap.to(menuRef.current, {
+        clipPath: 'circle(150% at top right)',
+        duration: 0.8,
+        ease: 'power3.inOut',
+        display: 'flex',
+      });
+      
+      gsap.fromTo(
+        links,
+        { y: 50, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.5, 
+          stagger: 0.1, 
+          ease: 'power3.out',
+          delay: 0.3 
+        }
+      );
+    } else {
+      gsap.to(menuRef.current, {
+        clipPath: 'circle(0% at top right)',
+        duration: 0.6,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          if (menuRef.current) {
+            gsap.set(menuRef.current, { display: 'none' });
+          }
+        }
+      });
+    }
+  }, [menuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,11 +165,11 @@ export default function Navbar() {
 
       {/* Mobile Menu Overlay */}
       <div 
-        className={`fixed inset-0 bg-bg-main z-40 flex flex-col justify-center items-center transition-opacity duration-300 md:hidden ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
+        ref={menuRef}
+        className={`fixed inset-0 bg-bg-main z-40 flex-col justify-center items-center md:hidden`}
+        style={{ display: 'none', clipPath: 'circle(0% at top right)' }}
       >
-        <nav className="flex flex-col gap-8 text-center">
+        <nav ref={navRef} className="flex flex-col gap-8 text-center">
           {links.map((link) => {
             const isInternal = link.href.startsWith('/');
             if (isInternal) {
@@ -133,7 +177,7 @@ export default function Navbar() {
                 <Link
                   key={link.name} 
                   to={link.href}
-                  className="text-3xl font-medium text-text-primary transition-opacity hover:opacity-70"
+                  className="mobile-link text-3xl font-medium text-text-primary transition-opacity hover:opacity-70"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.name}
@@ -144,7 +188,7 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-3xl font-medium text-text-primary transition-opacity hover:opacity-70"
+              className="mobile-link text-3xl font-medium text-text-primary transition-opacity hover:opacity-70"
               onClick={() => setMenuOpen(false)}
             >
               {link.name}

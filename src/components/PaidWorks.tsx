@@ -45,14 +45,14 @@ export default function PaidWorks() {
     <section 
       id="paid-works" 
       ref={container} 
-      className="py-24 md:py-32 px-6 md:px-12 lg:px-24 mx-auto max-w-[1600px] w-full relative min-h-screen flex items-center bg-[#070707] overflow-hidden border-t border-border-main"
+      className="py-24 md:py-32 px-6 md:px-12 lg:px-24 mx-auto max-w-[1600px] w-full relative min-h-screen flex items-center bg-bg-secondary overflow-hidden"
     >
       <div className="w-full relative z-10">
         <div className="section-eyebrow mb-12">
           06 // FREELANCE
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8 max-w-2xl font-light text-white">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-8 max-w-2xl font-light text-shine">
           Paid Works.
         </h2>
         <p className="text-text-secondary text-lg max-w-xl mb-16">
@@ -69,9 +69,9 @@ export default function PaidWorks() {
               target="_blank"
               rel="noopener noreferrer"
               onMouseEnter={playHoverSound}
-              className="group relative flex flex-col bg-[#000000] border border-[#ffffff14] p-4 rounded-lg overflow-hidden transition-colors hover:border-[#ffffff2a] cursor-pointer"
+              className="group relative flex flex-col bg-bg-main border border-border-main p-4 rounded-lg overflow-hidden transition-colors hover:border-border-hover cursor-pointer"
             >
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffffff14] group-hover:bg-accent transition-colors hidden sm:block"></div>
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-border-main group-hover:bg-accent transition-colors hidden sm:block"></div>
               
               <div className="relative w-full aspect-video rounded-md overflow-hidden bg-bg-secondary mb-6 border border-border-main">
                 <video 

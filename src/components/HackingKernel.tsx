@@ -2,22 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { playTypingBeep, playHoverSound } from '../utils/audio';
 
+import CustomCursor from './CustomCursor';
+
 export default function HackingKernel() {
-  const [logs, setLogs] = useState<string[]>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = sessionStorage.getItem('kernelLogs');
-      if (saved) return JSON.parse(saved);
-    }
-    return [];
-  });
+  const [logs, setLogs] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState('');
-  const [bootPhase, setBootPhase] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const hasBooted = sessionStorage.getItem('kernelBooted');
-      return !hasBooted;
-    }
-    return true;
-  });
+  const [bootPhase, setBootPhase] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -97,9 +87,7 @@ export default function HackingKernel() {
   ];
 
   useEffect(() => {
-    if (logs.length > 0) {
-      sessionStorage.setItem('kernelLogs', JSON.stringify(logs));
-    }
+    // Keep this empty or remove the whole useEffect
   }, [logs]);
 
   useEffect(() => {
@@ -112,7 +100,6 @@ export default function HackingKernel() {
         if (i >= bootSequence.length) {
           clearInterval(interval);
           setBootPhase(false);
-          sessionStorage.setItem('kernelBooted', 'true');
         }
       }, 300);
       return () => clearInterval(interval);
@@ -179,7 +166,6 @@ export default function HackingKernel() {
       setLogs(prev => [...prev, ...history.map((h, i) => `  ${i + 1}  ${h}`)]);
     } else if (trimmedCmd === 'clear') {
       setLogs([]);
-      sessionStorage.removeItem('kernelLogs');
     } else if (trimmedCmd === 'exit') {
       setLogs(prev => [...prev, "Terminating session...", "Switching to GUI mode..."]);
       setTimeout(() => {
@@ -199,7 +185,8 @@ export default function HackingKernel() {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] text-[#00ff88] font-mono text-sm sm:text-base p-4 sm:p-8 flex flex-col overflow-hidden selection:bg-[#00ff88] selection:text-black">
+    <div className="h-screen w-full relative bg-[#050505] text-[#00ff88] font-mono text-sm sm:text-base p-4 sm:p-8 flex flex-col overflow-hidden selection:bg-[#00ff88] selection:text-black">
+      <CustomCursor />
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-20 z-0"></canvas>
       <div className="absolute inset-0 pointer-events-none opacity-10" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, #00ff88 2px, #00ff88 4px)', backgroundSize: '100% 4px' }}></div>
       <div className="scanline-overlay"></div>

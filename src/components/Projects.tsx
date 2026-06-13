@@ -62,13 +62,13 @@ export default function Projects() {
   }, { scope: container });
 
   return (
-    <section id="projects" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
+    <section id="projects" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
       <div className="w-full relative z-10">
         <div className="section-eyebrow mb-12">
           05 // SELECTED WORK
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-16 max-w-2xl font-light">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-16 max-w-2xl font-light text-shine">
           Projects & Builds.
         </h2>
         

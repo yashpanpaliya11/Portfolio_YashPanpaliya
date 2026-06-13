@@ -12,20 +12,23 @@ export default function About() {
     // Stats count up
     const stats = gsap.utils.toArray('.stat-num');
     stats.forEach((stat: any) => {
-      const target = parseFloat(stat.getAttribute('data-target') || '0');
+      const targetStr = stat.getAttribute('data-target') || '0';
+      const target = parseFloat(targetStr);
+      const isDecimal = target % 1 !== 0;
+
       gsap.to(stat, {
         innerHTML: target,
         duration: 2,
         ease: "power2.out",
-        snap: { innerHTML: 1 }, 
+        snap: { innerHTML: isDecimal ? 0.1 : 1 }, 
         scrollTrigger: {
           trigger: container.current,
           start: "top 70%",
           once: true
         },
         onUpdate: function() {
-          if(target % 1 !== 0) {
-             stat.innerHTML = Number(this.targets()[0].innerHTML).toFixed(2);
+          if(isDecimal) {
+             stat.innerHTML = Number(this.targets()[0].innerHTML).toFixed(1);
           }
         }
       });
@@ -34,13 +37,13 @@ export default function About() {
   }, { scope: container });
 
   return (
-    <section id="about" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
+    <section id="about" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
       <div className="w-full relative z-10">
         <div className="section-eyebrow">
           01 // WHO I AM
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-12 max-w-3xl font-light">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-12 max-w-3xl font-light text-shine">
           A Builder Who Ships.
         </h2>
         
@@ -73,19 +76,19 @@ export default function About() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-border-main">
           <div className="flex flex-col gap-2">
             <div className="text-4xl md:text-5xl font-light text-text-primary">
-              <span className="stat-num" data-target="4">0</span>+
+              <span className="stat-num" data-target="10">0</span>+
             </div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-text-muted">Live Projects</div>
           </div>
           <div className="flex flex-col gap-2">
             <div className="text-4xl md:text-5xl font-light text-text-primary">
-              <span className="stat-num" data-target="100">0</span>+
+              <span className="stat-num" data-target="150">0</span>+
             </div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-text-muted">LeetCode</div>
           </div>
           <div className="flex flex-col gap-2 items-start">
             <div className="text-4xl md:text-5xl font-light text-text-primary bg-bg-secondary px-4 py-2 border border-border-main rounded-sm">
-              <span className="stat-num" data-target="8.43">0</span>
+              <span className="stat-num" data-target="8.5">0</span>
             </div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-text-muted mt-2">CGPA</div>
           </div>

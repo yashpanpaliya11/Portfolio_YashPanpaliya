@@ -42,7 +42,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={container} className="relative border-b border-border-main flex flex-col items-start p-8 md:p-12 lg:p-16 py-32 md:py-48 bg-bg-secondary overflow-hidden">
+    <section id="contact" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 py-32 md:py-48 bg-bg-secondary overflow-hidden">
       <div className="w-full relative z-10 flex flex-col xl:flex-row gap-16 md:gap-24 justify-between">
         
         <div className="w-full xl:max-w-xl">
@@ -50,7 +50,7 @@ export default function Contact() {
             06 // LET'S BUILD SOMETHING
           </div>
           
-          <h2 className="text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 font-light">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 font-light text-shine">
             Ready to Collaborate?
           </h2>
           

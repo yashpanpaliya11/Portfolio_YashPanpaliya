@@ -8,7 +8,7 @@ export default function Marquee() {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="w-full bg-text-primary text-bg-main py-3 md:py-4 overflow-hidden flex whitespace-nowrap border-b border-border-main">
+    <div className="w-full bg-text-primary text-bg-main py-3 md:py-4 overflow-hidden flex whitespace-nowrap">
       <div className="flex animate-marquee">
         {/* Double array for seamless loop */}
         {[...ITEMS, ...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (

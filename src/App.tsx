@@ -19,6 +19,8 @@ import Loader from './components/Loader';
 import BackgroundGrid from './components/BackgroundGrid';
 import SmoothScrollInit from './components/SmoothScrollInit';
 import BackToTop from './components/BackToTop';
+import AnimatedDivider from './components/AnimatedDivider';
+import SettingsWidget from './components/SettingsWidget';
 import { useState } from 'react';
 import { playClickSound } from './utils/audio';
 
@@ -35,6 +37,7 @@ export default function App() {
   return (
     <>
       <SmoothScrollInit />
+      <SettingsWidget />
       <div className="min-h-screen bg-bg-main text-text-primary flex">
         <BackgroundGrid />
         {loading && <Loader onComplete={handleLoaderComplete} />}
@@ -46,13 +49,21 @@ export default function App() {
           <div className="md:pl-20 w-full flex flex-col">
             <main className="flex-1 flex flex-col w-full relative">
               <Hero />
+              <AnimatedDivider />
               <Marquee />
+              <AnimatedDivider />
               <About />
+              <AnimatedDivider />
               <Timeline />
+              <AnimatedDivider />
               <Experience />
+              <AnimatedDivider />
               <TechStack3D />
+              <AnimatedDivider />
               <Projects />
+              <AnimatedDivider />
               <PaidWorks />
+              <AnimatedDivider />
               <Contact />
               <Footer />
             </main>

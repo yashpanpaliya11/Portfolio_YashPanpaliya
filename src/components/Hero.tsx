@@ -22,12 +22,12 @@ export default function Hero() {
     const tl = gsap.timeline();
     
     tl.fromTo(leftText.current, 
-      { x: "-15vw", opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: "back.out(1.5)", delay: 0.2 }
+      { x: "-15vw", opacity: 0, filter: 'blur(10px)' },
+      { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.2, ease: "back.out(1.5)", delay: 0.2 }
     )
     .fromTo(rightText.current,
-      { x: "15vw", opacity: 0 },
-      { x: 0, opacity: 1, duration: 1.2, ease: "back.out(1.5)" },
+      { x: "15vw", opacity: 0, filter: 'blur(10px)' },
+      { x: 0, opacity: 1, filter: 'blur(0px)', duration: 1.2, ease: "back.out(1.5)" },
       "<" 
     )
     .fromTo(imageReveal.current,
@@ -65,18 +65,18 @@ export default function Hero() {
   }, { scope: container });
 
   return (
-    <section ref={container} className="relative min-h-screen flex flex-col md:flex-row border-b border-border-main bg-bg-main overflow-hidden">
-      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 p-8 md:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative z-20" data-speed="1.1">
+    <section ref={container} className="relative min-h-screen flex flex-col md:flex-row bg-bg-main overflow-hidden">
+      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 p-8 pt-24 md:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative z-20" data-speed="1.1">
         <div className="section-eyebrow mb-8">
           DEVELOPER. BUILDER. STUDENT.
         </div>
         
         <div className="mb-10 space-y-2">
-          <h1 ref={leftText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light">
+          <h1 ref={leftText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-shine">
             React Developer.
           </h1>
           <br />
-          <h1 ref={rightText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-text-muted">
+          <h1 ref={rightText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-shine-muted">
             & AI Builder.
           </h1>
         </div>
@@ -110,7 +110,7 @@ export default function Hero() {
           </div>
         </div>
         
-        <div ref={ctaGroup} className="flex flex-wrap items-center gap-6 opacity-0 w-full mt-12 bg-bg-main/80 backdrop-blur-sm p-4 -ml-4 rounded-md inline-flex max-w-fit">
+        <div ref={ctaGroup} className="flex flex-wrap items-center gap-4 md:gap-6 opacity-0 w-full mt-12 bg-bg-main/80 backdrop-blur-sm p-4 -ml-4 rounded-md">
           <a href="#projects" onMouseEnter={playHoverSound} className="px-6 py-3 bg-text-primary text-bg-main font-medium text-sm rounded-sm hover:bg-accent hover:text-bg-main transition-colors">
             Selected Work ↓
           </a>

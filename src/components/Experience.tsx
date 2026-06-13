@@ -13,21 +13,25 @@ gsap.registerPlugin(ScrollTrigger);
   }, { scope: container });
 
   return (
-    <section id="experience" ref={container} className="relative border-b border-[#ffffff14] flex flex-col p-8 md:p-12 lg:p-16 bg-[#000000] overflow-hidden">
+    <section id="experience" ref={container} className="relative flex flex-col p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
       <div className="w-full relative z-10">
-        <div className="font-mono text-[10px] tracking-wider text-text-muted uppercase mb-12">
+        <div className="section-eyebrow mb-12">
           EXPERIENCE // HIGHLIGHT
         </div>
 
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-20 max-w-2xl font-light text-shine">
+          Experience.
+        </h2>
+
         <div className="flex flex-col gap-8">
           <div 
-            className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
+            className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-bg-main border border-border-main p-6 md:p-8 rounded-lg overflow-hidden group hover:border-border-hover transition-colors"
           >
             {/* Subtle left accent */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffffff14] group-hover:bg-[#00ff88] transition-colors"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-border-main group-hover:bg-accent transition-colors"></div>
 
             <div className="shrink-0 flex items-start pt-1">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#ffffff14] p-1 bg-black/50 overflow-hidden shrink-0 group-hover:border-[#00ff88] transition-colors duration-500 flex items-center justify-center font-sans font-medium text-3xl text-accent">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-border-main p-1 bg-black/50 overflow-hidden shrink-0 group-hover:border-accent transition-colors duration-500 flex items-center justify-center font-sans font-medium text-3xl text-accent">
                 <img src="https://i.ibb.co/kgkVKPL7/logo.png" alt="Observal Logo" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
               </div>
             </div>
@@ -48,19 +52,19 @@ gsap.registerPlugin(ScrollTrigger);
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#00ff88]/30 bg-[#00ff88]/10 text-[#00ff88] rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-accent/30 bg-accent/10 text-accent rounded-sm">
                   AI Automation
                 </span>
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#ffffff14] bg-[#ffffff0a] text-text-muted rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-border-main bg-bg-secondary text-text-muted rounded-sm">
                   n8n
                 </span>
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#ffffff14] bg-[#ffffff0a] text-text-muted rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-border-main bg-bg-secondary text-text-muted rounded-sm">
                   Communication
                 </span>
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#ffffff14] bg-[#ffffff0a] text-text-muted rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-border-main bg-bg-secondary text-text-muted rounded-sm">
                   JavaScript
                 </span>
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#ffffff14] bg-[#ffffff0a] text-text-muted rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-border-main bg-bg-secondary text-text-muted rounded-sm">
                   Content Strategy
                 </span>
               </div>
@@ -68,13 +72,13 @@ gsap.registerPlugin(ScrollTrigger);
           </div>
 
           <div 
-            className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-[#000000] border border-[#ffffff14] p-6 md:p-8 rounded-lg overflow-hidden group hover:border-[#ffffff2a] transition-colors"
+            className="relative flex flex-col md:flex-row gap-6 md:gap-8 bg-bg-main border border-border-main p-6 md:p-8 rounded-lg overflow-hidden group hover:border-border-hover transition-colors"
           >
             {/* Subtle left accent */}
-            <div className="absolute left-0 top-0 bottom-0 w-1 bg-[#ffffff14] group-hover:bg-[#00ff88] transition-colors"></div>
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-border-main group-hover:bg-accent transition-colors"></div>
 
             <div className="shrink-0 flex items-start pt-1">
-              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-[#ffffff14] p-1 bg-black/50 overflow-hidden shrink-0 group-hover:border-[#00ff88] transition-colors duration-500">
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-border-main p-1 bg-black/50 overflow-hidden shrink-0 group-hover:border-accent transition-colors duration-500">
                 <img 
                   src="https://i.ibb.co/RTSbKf6y/image.png" 
                   alt="Newton School of Technology Logo" 
@@ -100,14 +104,14 @@ gsap.registerPlugin(ScrollTrigger);
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-[#00ff88]/30 bg-[#00ff88]/10 text-[#00ff88] rounded-sm">
+                <span className="inline-block px-3 py-1 font-mono text-[10px] uppercase tracking-wider border border-accent/30 bg-accent/10 text-accent rounded-sm">
                   Flagship Event — Tekron
                 </span>
               </div>
             </div>
 
-            <div className="shrink-0 w-full sm:w-48 md:w-56 mt-6 md:mt-0 rounded-lg overflow-hidden border border-[#ffffff14] bg-[#000000] group-hover:border-[#ffffff2a] transition-colors relative self-start">
-              <div className="absolute inset-0 bg-[#00ff88]/5 pointer-events-none group-hover:bg-transparent transition-colors z-10"></div>
+            <div className="shrink-0 w-full sm:w-48 md:w-56 mt-6 md:mt-0 rounded-lg overflow-hidden border border-border-main bg-bg-main group-hover:border-border-hover transition-colors relative self-start">
+              <div className="absolute inset-0 bg-accent/5 pointer-events-none group-hover:bg-transparent transition-colors z-10"></div>
               <video 
                 src="https://www.image2url.com/r2/default/videos/1780219687456-94ce01ee-6743-4c9c-8f81-cf6724174db1.mp4"
                 autoPlay
