@@ -10,6 +10,8 @@ export default function SmoothScrollInit() {
     const lenis = new Lenis({
         autoRaf: true,
     });
+    
+    (window as any).lenis = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 

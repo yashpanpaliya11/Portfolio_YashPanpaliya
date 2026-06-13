@@ -18,6 +18,7 @@ import Footer from './components/Footer';
 import Loader from './components/Loader';
 import BackgroundGrid from './components/BackgroundGrid';
 import SmoothScrollInit from './components/SmoothScrollInit';
+import BackToTop from './components/BackToTop';
 import { useState } from 'react';
 import { playClickSound } from './utils/audio';
 
@@ -39,6 +40,7 @@ export default function App() {
         {loading && <Loader onComplete={handleLoaderComplete} />}
         <CustomCursor />
         <Navbar />
+        <BackToTop />
         
         <div className="flex-1 w-full relative">
           <div className="md:pl-20 w-full flex flex-col">
