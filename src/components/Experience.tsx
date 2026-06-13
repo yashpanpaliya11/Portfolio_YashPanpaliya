@@ -13,8 +13,8 @@ gsap.registerPlugin(ScrollTrigger);
   }, { scope: container });
 
   return (
-    <section id="experience" ref={container} className="relative flex flex-col p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
-      <div className="w-full relative z-10">
+    <section id="experience" ref={container} className="relative flex flex-col px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32 bg-bg-main overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto relative z-10">
         <div className="section-eyebrow mb-12">
           EXPERIENCE // HIGHLIGHT
         </div>

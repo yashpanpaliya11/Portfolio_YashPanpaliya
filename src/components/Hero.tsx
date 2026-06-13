@@ -66,7 +66,7 @@ export default function Hero() {
 
   return (
     <section ref={container} className="relative min-h-screen flex flex-col md:flex-row bg-bg-main overflow-hidden">
-      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 p-8 pt-24 md:p-12 lg:p-16 xl:p-24 flex flex-col justify-center relative z-20" data-speed="1.1">
+      <div ref={heroContent} className="w-full md:w-[55%] lg:w-[60%] shrink-0 px-6 py-24 md:px-12 lg:px-16 xl:px-24 flex flex-col justify-center relative z-20" data-speed="1.1">
         <div className="section-eyebrow mb-8">
           DEVELOPER. BUILDER. STUDENT.
         </div>
@@ -118,9 +118,6 @@ export default function Hero() {
             <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
             <Download className="w-5 h-5 drop-shadow-sm stroke-[2] group-hover:-translate-y-0.5 transition-transform relative z-10" /> 
             <span className="relative z-10">Download Resume</span>
-          </a>
-          <a href="https://github.com/yashpanpaliya11" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="px-6 py-3 border border-border-main hover:border-accent hover:text-accent text-text-primary text-sm rounded-sm transition-colors flex items-center gap-2 shrink-0">
-            <Github className="w-5 h-5 drop-shadow-sm stroke-[1.5]" /> View GitHub ↗
           </a>
         </div>
         

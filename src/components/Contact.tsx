@@ -42,8 +42,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 py-32 md:py-48 bg-bg-secondary overflow-hidden">
-      <div className="w-full relative z-10 flex flex-col xl:flex-row gap-16 md:gap-24 justify-between">
+    <section id="contact" ref={container} className="relative flex flex-col items-start px-6 py-24 md:px-12 md:py-32 lg:px-16 lg:py-48 bg-bg-secondary overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col xl:flex-row gap-16 md:gap-24 justify-between">
         
         <div className="w-full xl:max-w-xl">
           <div className="section-eyebrow mb-12">

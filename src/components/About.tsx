@@ -9,6 +9,24 @@ export default function About() {
   const container = useRef<HTMLDivElement>(null);
   
   useGSAP(() => {
+    // Reveal animations
+    gsap.fromTo(
+      '.reveal-text',
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.2,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: container.current,
+          start: 'top 80%',
+          once: true
+        }
+      }
+    );
+
     // Stats count up
     const stats = gsap.utils.toArray('.stat-num');
     stats.forEach((stat: any) => {
@@ -37,18 +55,18 @@ export default function About() {
   }, { scope: container });
 
   return (
-    <section id="about" ref={container} className="relative flex flex-col items-start p-8 md:p-12 lg:p-16 bg-bg-main overflow-hidden">
-      <div className="w-full relative z-10">
-        <div className="section-eyebrow">
+    <section id="about" ref={container} className="relative flex flex-col items-start px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32 bg-bg-main overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto relative z-10">
+        <div className="section-eyebrow reveal-text opacity-0">
           01 // WHO I AM
         </div>
         
-        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-12 max-w-3xl font-light text-shine">
+        <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight mb-12 max-w-3xl font-light text-shine reveal-text opacity-0">
           A Builder Who Ships.
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24 mb-16">
-          <div className="space-y-6 text-text-secondary md:text-lg leading-relaxed font-light" data-speed="1.05">
+          <div className="space-y-6 text-text-secondary md:text-lg leading-relaxed font-light reveal-text opacity-0" data-speed="1.05">
             <p>
               I am a B.Tech CSE student (Class of 2029) at Ajeenkya DY Patil University (Newton School of Technology). I am a software engineer skilled in React, Python, and JavaScript, with a strong foundation in DSA.
             </p>
@@ -57,7 +75,7 @@ export default function About() {
             </p>
           </div>
           
-          <div className="flex flex-col justify-end" data-speed="0.95">
+          <div className="flex flex-col justify-end reveal-text opacity-0" data-speed="0.95">
             <div className="bg-bg-secondary p-6 border border-border-main rounded-sm h-fit w-full max-w-sm space-y-4">
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
@@ -73,7 +91,7 @@ export default function About() {
           </div>
         </div>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-border-main">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t border-border-main reveal-text opacity-0">
           <div className="flex flex-col gap-2">
             <div className="text-4xl md:text-5xl font-light text-text-primary">
               <span className="stat-num" data-target="10">0</span>+

@@ -109,6 +109,53 @@ export const playClickSound = () => {
   } catch(e) {}
 };
 
+let ambientOsc: OscillatorNode | null = null;
+let ambientGain: GainNode | null = null;
+export let isAmbientPlaying = false;
+
+export const toggleAmbientSound = () => {
+  const ctx = getAudioContext();
+  if (!ctx) return false;
+  
+  if (isAmbientPlaying) {
+    if (ambientGain) {
+      ambientGain.gain.setTargetAtTime(0, ctx.currentTime, 1);
+      setTimeout(() => {
+        ambientOsc?.stop();
+        ambientOsc?.disconnect();
+        ambientGain?.disconnect();
+        ambientOsc = null;
+        ambientGain = null;
+      }, 2000);
+    }
+    isAmbientPlaying = false;
+  } else {
+    // Resume context if needed
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+    
+    ambientOsc = ctx.createOscillator();
+    ambientGain = ctx.createGain();
+    
+    ambientOsc.type = 'sine';
+    
+    // Create a very subtle low drone
+    ambientOsc.frequency.setValueAtTime(60, ctx.currentTime);
+    // Add slight LFO logic to frequency could go here, or just keep it simple
+    
+    ambientGain.gain.setValueAtTime(0, ctx.currentTime);
+    ambientGain.gain.setTargetAtTime(0.015, ctx.currentTime, 2); // fade in slowly
+    
+    ambientOsc.connect(ambientGain);
+    ambientGain.connect(ctx.destination);
+    
+    ambientOsc.start();
+    isAmbientPlaying = true;
+  }
+  return isAmbientPlaying;
+};
+
 if (typeof document !== 'undefined') {
   document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;

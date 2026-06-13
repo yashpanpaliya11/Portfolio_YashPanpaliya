@@ -45,9 +45,9 @@ export default function PaidWorks() {
     <section 
       id="paid-works" 
       ref={container} 
-      className="py-24 md:py-32 px-6 md:px-12 lg:px-24 mx-auto max-w-[1600px] w-full relative min-h-screen flex items-center bg-bg-secondary overflow-hidden"
+      className="relative flex flex-col items-start px-6 py-20 md:px-12 md:py-28 lg:px-16 lg:py-32 w-full min-h-screen bg-bg-secondary overflow-hidden"
     >
-      <div className="w-full relative z-10">
+      <div className="w-full max-w-7xl mx-auto relative z-10 flex-col justify-center">
         <div className="section-eyebrow mb-12">
           06 // FREELANCE
         </div>

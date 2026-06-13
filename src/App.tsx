@@ -21,6 +21,7 @@ import SmoothScrollInit from './components/SmoothScrollInit';
 import BackToTop from './components/BackToTop';
 import AnimatedDivider from './components/AnimatedDivider';
 import SettingsWidget from './components/SettingsWidget';
+import AmbientSoundToggle from './components/AmbientSoundToggle';
 import { useState } from 'react';
 import { playClickSound } from './utils/audio';
 
@@ -38,6 +39,7 @@ export default function App() {
     <>
       <SmoothScrollInit />
       <SettingsWidget />
+      <AmbientSoundToggle />
       <div className="min-h-screen bg-bg-main text-text-primary flex">
         <BackgroundGrid />
         {loading && <Loader onComplete={handleLoaderComplete} />}
