@@ -70,10 +70,10 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     let logIndex = 0;
 
     const interval = setInterval(() => {
-      // Slower progress
-      currentProgress += Math.random() * 1.5 + 0.5;
+      // Faster progress
+      currentProgress += Math.random() * 8 + 6;
       
-      if (logIndex < hackingLogs.length && Math.random() > 0.3) {
+      if (logIndex < hackingLogs.length && Math.random() > 0.1) {
         setLogs(prev => [...prev.slice(-20), hackingLogs[logIndex]]);
         logIndex++;
         if (logsRef.current) {
@@ -90,11 +90,11 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         clearInterval(interval);
         setTimeout(() => {
           setPhase('prompt');
-        }, 1500);
+        }, 500);
       }
       setProgress(Math.floor(currentProgress));
 
-    }, 80);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [phase]);

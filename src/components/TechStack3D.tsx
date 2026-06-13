@@ -239,8 +239,8 @@ export default function TechStack3D() {
         </h2>
       </div>
       
-      <div className="canvas-container absolute inset-0 z-10 pt-32">
-        <Canvas shadows camera={{ position: [0, 0, 20], fov: 45 }} gl={{ alpha: true }}>
+      <div className="canvas-container absolute inset-0 z-10 pt-32 pointer-events-none sm:pointer-events-auto shrink-0 touch-none">
+        <Canvas dpr={[1, 1.5]} shadows camera={{ position: [0, 0, 20], fov: 45 }} gl={{ alpha: true }}>
           <CameraRig />
           <Suspense fallback={null}>
             <ambientLight intensity={1.5} />

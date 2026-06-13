@@ -14,6 +14,51 @@ export default function Projects() {
 
   useGSAP(() => {
     // Keeping useGSAP for structure but removing curtain animation
+    
+    // Add Parallax tilt to cards
+    const cards = gsap.utils.toArray<HTMLElement>('.project-card');
+    
+    // Check if device supports hover (ignores mobile where tilt is jittery)
+    const mediaQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    if (!mediaQuery.matches) return;
+
+    cards.forEach(card => {
+      const q = gsap.utils.selector(card);
+      
+      const onMouseMove = (e: MouseEvent) => {
+        const rect = card.getBoundingClientRect();
+        const ax = -(rect.width / 2 - (e.clientX - rect.left)) / 40;
+        const ay = (rect.height / 2 - (e.clientY - rect.top)) / 40;
+        
+        gsap.to(card, {
+          rotateY: ax,
+          rotateX: ay,
+          transformPerspective: 1000,
+          scale: 1.01,
+          ease: "power2.out",
+          duration: 0.5
+        });
+      };
+      
+      const onMouseLeave = () => {
+        gsap.to(card, {
+          rotateY: 0,
+          rotateX: 0,
+          scale: 1,
+          ease: "power2.out",
+          duration: 0.7
+        });
+      };
+      
+      card.addEventListener('mousemove', onMouseMove);
+      card.addEventListener('mouseleave', onMouseLeave);
+      
+      return () => {
+        card.removeEventListener('mousemove', onMouseMove);
+        card.removeEventListener('mouseleave', onMouseLeave);
+      };
+    });
+    
   }, { scope: container });
 
   return (
@@ -30,11 +75,11 @@ export default function Projects() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* 1. AI Voice Agent Card */}
-          <div className="md:col-span-2 h-full flex flex-col">
+          <div className="md:col-span-2 h-full flex flex-col perspective-[1000px]">
             <div 
               onClick={() => navigate('/project/voice-agent')}
               onMouseEnter={playHoverSound}
-              className="cursor-pointer group bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300 w-full h-full"
+              className="project-card cursor-pointer group bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300 w-full h-full transform-gpu"
             >
               <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1 flex items-center gap-2">
                 <span className="text-accent">●</span> COMPLETED (3 DAYS)
@@ -87,11 +132,11 @@ export default function Projects() {
           </div>
 
           {/* 2. CRM Dashboard Card */}
-          <div className="md:col-span-2 h-full flex flex-col">
+          <div className="md:col-span-2 h-full flex flex-col perspective-[1000px]">
             <div 
               onClick={() => navigate('/project/crm-dashboard')}
               onMouseEnter={playHoverSound}
-              className="group cursor-pointer bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300 w-full h-full"
+              className="project-card group cursor-pointer bg-[#000000] p-6 md:p-8 border border-border-main border-l-2 border-l-accent rounded-sm relative flex flex-col lg:flex-row gap-8 hover:border-text-primary/30 transition-all duration-300 w-full h-full transform-gpu"
             >
               <div className="absolute top-4 right-4 md:top-6 md:right-6 text-text-muted font-mono text-xs z-10 bg-black px-2 py-1">FEB-MAR 2026</div>
 
@@ -149,11 +194,11 @@ export default function Projects() {
           </div>
 
           {/* 3. Dukaan Mate Card */}
-          <div className="h-full">
+          <div className="h-full perspective-[1000px]">
             <div 
               onClick={() => navigate('/project/dukaan-mate')}
               onMouseEnter={playHoverSound}
-              className="group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px] h-full"
+              className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px] h-full transform-gpu"
             >
               <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">2026</div>
               <div>
@@ -173,11 +218,11 @@ export default function Projects() {
           </div>
 
           {/* 4. WhatsApp Ordering Card */}
-          <div className="h-full">
+          <div className="h-full perspective-[1000px]">
             <div 
               onClick={() => navigate('/project/whatsapp-bot')}
               onMouseEnter={playHoverSound}
-              className="group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px] h-full"
+              className="project-card group cursor-pointer bg-bg-main p-6 border border-border-main rounded-sm relative flex flex-col justify-between hover:border-text-primary/30 transition-all duration-300 min-h-[240px] h-full transform-gpu"
             >
               <div className="absolute top-4 right-4 text-text-muted font-mono text-xs">MAY 2026</div>
               <div>

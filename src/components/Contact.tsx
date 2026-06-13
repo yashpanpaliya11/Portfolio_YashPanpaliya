@@ -148,19 +148,28 @@ export default function Contact() {
               
               <a 
                 href="mailto:yashpanpaliya11@gmail.com" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigator.clipboard.writeText('yashpanpaliya11@gmail.com');
+                  setSubmitStatus('success');
+                  setTimeout(() => setSubmitStatus('idle'), 2000);
+                }}
                 onMouseEnter={playHoverSound}
-                className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
+                className="group flex flex-col justify-center py-6 border-b border-border-main hover:border-accent transition-colors"
               >
-                <div className="flex items-center gap-5 w-full">
-                  <div className="text-accent group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
-                    <Mail className="w-6 h-6 stroke-[1.5]" />
+                <div className="flex items-center justify-between w-full">
+                  <div className="flex items-center gap-5">
+                    <div className="text-accent group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
+                      <Mail className="w-6 h-6 stroke-[1.5]" />
+                    </div>
+                    <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
+                      <span className="block transition-transform duration-300 group-hover:-translate-y-full">Email</span>
+                      <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">yashpanpaliya11@gmail...</span>
+                    </span>
                   </div>
-                  <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
-                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">Email</span>
-                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">yashpanpaliya11@gmail...</span>
-                  </span>
+                  <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
                 </div>
-                <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
+                {submitStatus === 'success' && <div className="text-accent font-mono text-xs mt-2 transition-all">Copied to clipboard!</div>}
               </a>
 
               <a 
