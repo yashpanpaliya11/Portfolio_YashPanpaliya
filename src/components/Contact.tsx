@@ -12,6 +12,7 @@ export default function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [copyStatus, setCopyStatus] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
   useGSAP(() => {
@@ -151,8 +152,8 @@ export default function Contact() {
                 onClick={(e) => {
                   e.preventDefault();
                   navigator.clipboard.writeText('yashpanpaliya11@gmail.com');
-                  setSubmitStatus('success');
-                  setTimeout(() => setSubmitStatus('idle'), 2000);
+                  setCopyStatus(true);
+                  setTimeout(() => setCopyStatus(false), 2000);
                 }}
                 onMouseEnter={playHoverSound}
                 className="group flex flex-col justify-center py-6 border-b border-border-main hover:border-accent transition-colors"
@@ -169,7 +170,7 @@ export default function Contact() {
                   </div>
                   <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
                 </div>
-                {submitStatus === 'success' && <div className="text-accent font-mono text-xs mt-2 transition-all">Copied to clipboard!</div>}
+                {copyStatus && <div className="text-accent font-mono text-xs mt-2 transition-all">Copied to clipboard!</div>}
               </a>
 
               <a 

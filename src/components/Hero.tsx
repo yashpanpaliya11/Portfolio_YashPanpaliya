@@ -72,11 +72,11 @@ export default function Hero() {
         </div>
         
         <div className="mb-10 space-y-2">
-          <h1 ref={leftText} className="text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light whitespace-nowrap">
+          <h1 ref={leftText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light">
             React Developer.
           </h1>
           <br />
-          <h1 ref={rightText} className="text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-text-muted whitespace-nowrap">
+          <h1 ref={rightText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-text-muted">
             & AI Builder.
           </h1>
         </div>

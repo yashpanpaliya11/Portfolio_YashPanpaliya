@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Github, Linkedin } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
@@ -58,7 +59,24 @@ export default function Navbar() {
         </a>
         
         <nav className="flex gap-6 text-[10px] font-mono uppercase tracking-[0.2em] rotate-180 whitespace-nowrap text-text-secondary" style={{ writingMode: 'vertical-rl' }}>
-          {[...links].reverse().map((link) => (
+          {[...links].reverse().map((link) => {
+            const isInternal = link.href.startsWith('/');
+            if (isInternal) {
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onMouseEnter={playHoverSound}
+                  className="hover:text-accent hover:underline decoration-accent underline-offset-4 transition-colors"
+                  onClick={() => {
+                    setMenuOpen(false);
+                  }}
+                >
+                  {link.name}
+                </Link>
+              );
+            }
+            return (
             <a 
               key={link.name} 
               href={link.href}
@@ -70,7 +88,7 @@ export default function Navbar() {
             >
               {link.name}
             </a>
-          ))}
+          )})}
         </nav>
 
         <div className="flex flex-col gap-4 text-text-muted font-mono text-[10px] uppercase tracking-widest">
@@ -108,7 +126,21 @@ export default function Navbar() {
         }`}
       >
         <nav className="flex flex-col gap-8 text-center">
-          {links.map((link) => (
+          {links.map((link) => {
+            const isInternal = link.href.startsWith('/');
+            if (isInternal) {
+              return (
+                <Link
+                  key={link.name} 
+                  to={link.href}
+                  className="text-3xl font-medium text-text-primary transition-opacity hover:opacity-70"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            }
+            return (
             <a 
               key={link.name} 
               href={link.href}
@@ -117,7 +149,7 @@ export default function Navbar() {
             >
               {link.name}
             </a>
-          ))}
+          )})}
         </nav>
       </div>
     </>

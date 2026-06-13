@@ -2,7 +2,6 @@ import { useRef, useMemo, useState, Suspense } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment, Loader } from '@react-three/drei';
 import { Physics, RigidBody, BallCollider } from '@react-three/rapier';
-import { EffectComposer, N8AO } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -239,7 +238,7 @@ export default function TechStack3D() {
         </h2>
       </div>
       
-      <div className="canvas-container absolute inset-0 z-10 pt-32 pointer-events-none sm:pointer-events-auto shrink-0 touch-none">
+      <div className="canvas-container absolute inset-0 z-10 pt-32 pointer-events-none sm:pointer-events-auto shrink-0">
         <Canvas dpr={[1, 1.5]} shadows camera={{ position: [0, 0, 20], fov: 45 }} gl={{ alpha: true }}>
           <CameraRig />
           <Suspense fallback={null}>
@@ -261,9 +260,6 @@ export default function TechStack3D() {
             </Physics>
             
             <Environment preset="city" />
-            <EffectComposer multisampling={4}>
-              <N8AO distanceFalloff={0.2} aoRadius={1} intensity={1} color="#000000" />
-            </EffectComposer>
           </Suspense>
         </Canvas>
         <Loader 
