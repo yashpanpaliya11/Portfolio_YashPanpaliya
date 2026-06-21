@@ -34,7 +34,7 @@ export const playTypingBeep = () => {
     osc.frequency.setValueAtTime(baseFreq, t);
     osc.frequency.exponentialRampToValueAtTime(40, t + 0.02);
     
-    oscGain.gain.setValueAtTime(0.05, t);
+    oscGain.gain.setValueAtTime(0.2, t);
     oscGain.gain.exponentialRampToValueAtTime(0.001, t + 0.02);
     
     osc.connect(oscGain);
@@ -58,7 +58,7 @@ export const playTypingBeep = () => {
     filter.Q.value = 1.2;
     
     const noiseGain = ctx.createGain();
-    noiseGain.gain.setValueAtTime(0.15, t);
+    noiseGain.gain.setValueAtTime(0.4, t);
     noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.03); // Quick decay
     
     noise.connect(filter);
@@ -82,7 +82,7 @@ export const playHoverSound = () => {
     osc.type = 'sine';
     osc.frequency.setValueAtTime(800, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.08);
-    gain.gain.setValueAtTime(0.01, ctx.currentTime);
+    gain.gain.setValueAtTime(0.05, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
     osc.connect(gain);
     gain.connect(ctx.destination);
@@ -100,7 +100,7 @@ export const playClickSound = () => {
     osc.type = 'triangle';
     osc.frequency.setValueAtTime(1200, ctx.currentTime);
     osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.1);
-    gain.gain.setValueAtTime(0.03, ctx.currentTime);
+    gain.gain.setValueAtTime(0.1, ctx.currentTime);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1);
     osc.connect(gain);
     gain.connect(ctx.destination);
@@ -145,7 +145,7 @@ export const toggleAmbientSound = () => {
     // Add slight LFO logic to frequency could go here, or just keep it simple
     
     ambientGain.gain.setValueAtTime(0, ctx.currentTime);
-    ambientGain.gain.setTargetAtTime(0.015, ctx.currentTime, 2); // fade in slowly
+    ambientGain.gain.setTargetAtTime(0.08, ctx.currentTime, 2); // fade in slowly
     
     ambientOsc.connect(ambientGain);
     ambientGain.connect(ctx.destination);
