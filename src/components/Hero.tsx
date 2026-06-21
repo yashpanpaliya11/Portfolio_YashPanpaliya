@@ -114,11 +114,11 @@ export default function Hero() {
           <a href="#projects" onMouseEnter={playHoverSound} className="px-6 py-3 bg-text-primary text-bg-main font-medium text-sm rounded-sm hover:bg-accent hover:text-bg-main transition-colors">
             Selected Work ↓
           </a>
-          <button onClick={() => { playHoverSound(); window.open('https://drive.google.com/file/d/1UWQMmvCfsO03JCy01V1CrQc7BB_RJ-RW/view?usp=sharing', '_blank', 'noopener,noreferrer'); }} onMouseEnter={playHoverSound} className="group relative px-6 py-3 bg-accent/10 border border-accent/40 text-accent font-medium text-sm rounded-sm overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] flex items-center gap-2">
+          <a href="https://drive.google.com/file/d/1UWQMmvCfsO03JCy01V1CrQc7BB_RJ-RW/view?usp=sharing" onMouseEnter={playHoverSound} target="_blank" rel="noopener noreferrer" className="group relative px-6 py-3 bg-accent/10 border border-accent/40 text-accent font-medium text-sm rounded-sm overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] flex items-center gap-2">
             <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
             <Download className="w-5 h-5 drop-shadow-sm stroke-[2] group-hover:-translate-y-0.5 transition-transform relative z-10" /> 
             <span className="relative z-10">Download Resume</span>
-          </button>
+          </a>
         </div>
         
         <div ref={scrollIndicator} className="absolute bottom-12 left-8 md:left-12 lg:left-16 xl:left-24 flex items-center gap-2 text-text-muted font-mono text-[10px] uppercase tracking-wider opacity-0">
