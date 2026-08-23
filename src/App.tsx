@@ -15,34 +15,18 @@ import Projects from './components/Projects';
 import PaidWorks from './components/PaidWorks';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import Loader from './components/Loader';
 import BackgroundGrid from './components/BackgroundGrid';
 import SmoothScrollInit from './components/SmoothScrollInit';
 import BackToTop from './components/BackToTop';
 import AnimatedDivider from './components/AnimatedDivider';
-import SettingsWidget from './components/SettingsWidget';
-import AmbientSoundToggle from './components/AmbientSoundToggle';
 import { useState } from 'react';
-import { playClickSound } from './utils/audio';
-
-let hasSeenLoaderThisSession = false;
 
 export default function App() {
-  const [loading, setLoading] = useState(!hasSeenLoaderThisSession);
-
-  const handleLoaderComplete = () => {
-    hasSeenLoaderThisSession = true;
-    setLoading(false);
-  };
-
   return (
     <>
       <SmoothScrollInit />
-      <SettingsWidget />
-      <AmbientSoundToggle />
       <div className="min-h-screen bg-bg-main text-text-primary flex">
         <BackgroundGrid />
-        {loading && <Loader onComplete={handleLoaderComplete} />}
         <CustomCursor />
         <Navbar />
         <BackToTop />

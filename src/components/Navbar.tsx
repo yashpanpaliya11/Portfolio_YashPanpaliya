@@ -88,7 +88,6 @@ export default function Navbar() {
     { name: 'Projects', href: '#projects' },
     { name: 'Freelance', href: '#paid-works' },
     { name: 'Contact', href: '#contact' },
-    { name: 'Kernel', href: '/kernel' },
   ];
 
   return (

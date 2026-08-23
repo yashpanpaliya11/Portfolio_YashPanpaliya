@@ -89,11 +89,7 @@ export default function Hero() {
           <div className="flex flex-col gap-3 text-sm md:text-base text-text-secondary leading-relaxed bg-bg-main/80 backdrop-blur-sm rounded-md p-4 -ml-4 border border-border-main/50">
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
-              <span><span className="text-text-primary font-medium">Shipping AI automation</span> at Observal</span>
-            </div>
-            <div className="flex items-center gap-3 group">
-              <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>
-              <span><span className="text-text-primary font-medium">Founding Intern</span> @ Campus Connect</span>
+              <span><span className="text-text-primary font-medium">Building</span> Blitsum</span>
             </div>
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-accent/50 group-hover:bg-accent transition-colors rounded-none"></div>

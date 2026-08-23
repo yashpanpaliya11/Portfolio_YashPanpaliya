@@ -1,45 +1,21 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, Mail, Linkedin, Github, Rocket, Send } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin, Github, Rocket, Send, Calendar } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
+import CalBooking from './CalBooking';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const container = useRef<HTMLDivElement>(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [copyStatus, setCopyStatus] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [showCalendar, setShowCalendar] = useState(false);
 
   useGSAP(() => {
     // Basic setup
   }, { scope: container });
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    try {
-      // Simulate network transmission
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-    } catch (error: any) {
-      console.error('Error submitting message:', error);
-      setErrorMessage(error.message || 'Unknown error');
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-      setTimeout(() => setSubmitStatus('idle'), 8000); // clear status after 8s
-    }
-  };
 
   return (
     <section id="contact" ref={container} className="relative flex flex-col items-start px-6 py-24 md:px-12 md:py-32 lg:px-16 lg:py-48 bg-bg-secondary overflow-hidden">
@@ -66,82 +42,23 @@ export default function Contact() {
         
         <div className="w-full xl:max-w-xl flex-shrink-0 flex flex-col gap-16">
           <div className="w-full">
-            <form onSubmit={handleSubmit} className="w-full flex flex-col gap-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label htmlFor="name" className="text-xs font-mono text-text-secondary uppercase tracking-widest">Name</label>
-                <input 
-                  type="text" 
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  required
-                  className="bg-bg-main border border-border-main px-4 py-3 outline-none focus:border-accent transition-colors text-sm" 
-                  placeholder="John Doe"
-                />
+            {showCalendar ? (
+              <div className="animate-[fadeIn_0.5s_ease-out]">
+                <CalBooking />
               </div>
-              <div className="flex flex-col gap-2">
-                <label htmlFor="email" className="text-xs font-mono text-text-secondary uppercase tracking-widest">Email</label>
-                <input 
-                  type="email" 
-                  id="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  required
-                  className="bg-bg-main border border-border-main px-4 py-3 outline-none focus:border-accent transition-colors text-sm" 
-                  placeholder="john@example.com"
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-xs font-mono text-text-secondary uppercase tracking-widest">Message</label>
-              <textarea 
-                id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-                required
-                rows={4}
-                className="bg-bg-main border border-border-main px-4 py-3 outline-none focus:border-accent transition-colors text-sm resize-none" 
-                placeholder="How can I help you?"
-              ></textarea>
-            </div>
-
-            <button 
-              type="submit" 
-              disabled={isSubmitting}
-              onMouseEnter={playHoverSound}
-              className="group relative inline-flex items-center justify-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-4 overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] font-medium w-full disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-              <span className="relative z-10 flex items-center gap-2">
-                {isSubmitting ? 'TRANSMITTING...' : 'SEND MESSAGE'} 
-                {!isSubmitting && <Send className="w-4 h-4 ml-2" />}
-              </span>
-            </button>
-
-            {submitStatus === 'success' && (
-              <div className="text-accent text-sm font-mono border border-accent/30 bg-accent/5 p-4 flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></div>
-                  Message received successfully.
-                </div>
-              </div>
+            ) : (
+              <button 
+                onClick={() => { playHoverSound(); setShowCalendar(true); }}
+                onMouseEnter={playHoverSound}
+                className="group relative inline-flex items-center justify-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-4 overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] font-medium w-full"
+              >
+                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <span className="relative z-10 flex items-center gap-2">
+                  BOOK APPOINTMENT
+                  <Calendar className="w-4 h-4 ml-2" />
+                </span>
+              </button>
             )}
-            {submitStatus === 'error' && (
-              <div className="text-red-500 text-sm font-mono border border-red-500/30 bg-red-500/5 p-4 flex flex-col gap-2">
-                <div className="flex items-center gap-2 font-bold">
-                  <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></div>
-                  Transmission failed.
-                </div>
-                <div className="text-xs opacity-90 break-words mt-1">
-                  {errorMessage.includes('permission') || errorMessage.includes('Missing or insufficient')
-                    ? "Permission denied. Please ensure Firestore Security Rules allow writes in your Firebase console."
-                    : `Error: ${errorMessage}. Please check your Firebase config.`}
-                </div>
-              </div>
-            )}
-          </form>
           </div>
 
           <div className="w-full">
@@ -210,7 +127,7 @@ export default function Contact() {
               </a>
 
               <a 
-                href="https://fiverr.com/yashpanpaliya" 
+                href="https://www.fiverr.com/users/yash_panpaliya/portfolio" 
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
                 className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
@@ -221,7 +138,7 @@ export default function Contact() {
                   </div>
                   <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
                     <span className="block transition-transform duration-300 group-hover:-translate-y-full">Fiverr</span>
-                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">@yashpanpaliya</span>
+                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">@yash_panpaliya</span>
                   </span>
                 </div>
                 <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />

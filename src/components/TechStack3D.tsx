@@ -59,7 +59,7 @@ const createTextTexture = (text: string) => {
 };
 
 // Using any to prevent complex type issues with older/newer @react-three/rapier versions
-function TechBall(props: { position: [number, number, number], size: number, text: string, onClick: () => void, isSelected?: boolean }) {
+function TechBall(props: { key?: string, position: [number, number, number], size: number, text: string, onClick: () => void, isSelected?: boolean }) {
   const rigidBodyRef = useRef<any>(null);
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);

@@ -13,10 +13,8 @@ interface PreferenceContextType {
 const PreferenceContext = createContext<PreferenceContextType | undefined>(undefined);
 
 export const PreferenceProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(() => {
-    const saved = localStorage.getItem('app-theme');
-    return (saved as Theme) || 'dark';
-  });
+  const theme: Theme = 'dark'; // Forced to dark
+  const setTheme = () => {};
 
   const [animationIntensity, setAnimationIntensity] = useState<AnimationIntensity>(() => {
     const saved = localStorage.getItem('app-animation-intensity');
@@ -24,13 +22,8 @@ export const PreferenceProvider: React.FC<{ children: React.ReactNode }> = ({ ch
   });
 
   useEffect(() => {
-    localStorage.setItem('app-theme', theme);
-    if (theme === 'light') {
-      document.documentElement.classList.add('light-theme');
-    } else {
-      document.documentElement.classList.remove('light-theme');
-    }
-  }, [theme]);
+    document.documentElement.classList.remove('light-theme');
+  }, []);
 
   useEffect(() => {
     localStorage.setItem('app-animation-intensity', animationIntensity);
