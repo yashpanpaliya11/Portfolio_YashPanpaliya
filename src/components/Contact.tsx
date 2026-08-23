@@ -68,16 +68,17 @@ export default function Contact() {
                 }}
                 onMouseEnter={playHoverSound}
                 className="group flex flex-col justify-center py-6 border-b border-border-main hover:border-accent transition-colors"
+                title="Email Yash Panpaliya"
               >
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-5">
                     <div className="text-accent group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
                       <Mail className="w-6 h-6 stroke-[1.5]" />
                     </div>
-                    <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
-                      <span className="block transition-transform duration-300 group-hover:-translate-y-full">Email</span>
-                      <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">yashpanpaliya11@gmail...</span>
-                    </span>
+                    <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
+                      <span className="font-bold">Email</span>
+                      <span className="text-accent text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity">yashpanpaliya11@gmail.com</span>
+                    </div>
                   </div>
                   <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
                 </div>
@@ -89,15 +90,16 @@ export default function Contact() {
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
                 className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
+                title="Yash Panpaliya LinkedIn Profile"
               >
                 <div className="flex items-center gap-5 w-full">
                   <div className="text-accent group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
                     <Linkedin className="w-6 h-6 stroke-[1.5]" />
                   </div>
-                  <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
-                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">LinkedIn</span>
-                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">yash-panpaliya</span>
-                  </span>
+                  <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
+                    <span className="font-bold">LinkedIn</span>
+                    <span className="text-accent text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity">yash-panpaliya</span>
+                  </div>
                 </div>
                 <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
               </a>
@@ -107,15 +109,16 @@ export default function Contact() {
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
                 className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
+                title="Yash Panpaliya GitHub Profile"
               >
                 <div className="flex items-center gap-5 w-full">
                   <div className="text-accent group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
                     <Github className="w-6 h-6 stroke-[1.5]" />
                   </div>
-                  <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
-                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">GitHub</span>
-                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">yashpanpaliya11</span>
-                  </span>
+                  <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
+                    <span className="font-bold">GitHub</span>
+                    <span className="text-accent text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity">yashpanpaliya11</span>
+                  </div>
                 </div>
                 <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
               </a>
@@ -125,15 +128,16 @@ export default function Contact() {
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
                 className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
+                title="Yash Panpaliya Fiverr Profile"
               >
                 <div className="flex items-center gap-5 w-full">
                   <div className="text-accent group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
                     <Rocket className="w-6 h-6 stroke-[1.5]" />
                   </div>
-                  <span className="font-mono text-text-secondary group-hover:text-accent transition-colors block overflow-hidden relative flex-1">
-                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">Fiverr</span>
-                    <span className="block transition-transform duration-300 absolute top-full left-0 group-hover:-translate-y-full text-accent normal-case tracking-normal">@yash_panpaliya</span>
-                  </span>
+                  <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
+                    <span className="font-bold">Fiverr</span>
+                    <span className="text-accent text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity">@yash_panpaliya</span>
+                  </div>
                 </div>
                 <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
               </a>
