@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, Mail, Linkedin, Github, Rocket, Send, Calendar } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin, Github, Rocket, Send, Calendar, X } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
 import CalBooking from './CalBooking';
 
@@ -18,10 +18,10 @@ export default function Contact() {
   }, { scope: container });
 
   return (
-    <section id="contact" ref={container} className="relative flex flex-col items-start px-6 py-24 md:px-12 md:py-32 lg:px-16 lg:py-48 bg-bg-secondary overflow-hidden">
-      <div className="w-full max-w-7xl mx-auto relative z-10 flex flex-col xl:flex-row gap-16 md:gap-24 justify-between">
+    <section id="contact" ref={container} className="relative flex flex-col items-start px-6 py-16 md:px-12 md:py-24 lg:px-16 lg:py-32 bg-bg-secondary overflow-hidden">
+      <div className="w-full max-w-7xl mx-auto relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-24">
         
-        <div className="w-full xl:max-w-xl">
+        <div className="w-full flex flex-col justify-start lg:sticky lg:top-32 h-fit">
           <div className="section-eyebrow mb-12">
             06 // LET'S BUILD SOMETHING
           </div>
@@ -40,25 +40,19 @@ export default function Contact() {
           </div>
         </div>
         
-        <div className="w-full xl:max-w-xl flex-shrink-0 flex flex-col gap-16">
+        <div className="w-full flex flex-col gap-16">
           <div className="w-full">
-            {showCalendar ? (
-              <div className="animate-[fadeIn_0.5s_ease-out]">
-                <CalBooking />
-              </div>
-            ) : (
-              <button 
-                onClick={() => { playHoverSound(); setShowCalendar(true); }}
-                onMouseEnter={playHoverSound}
-                className="group relative inline-flex items-center justify-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-4 overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] font-medium w-full"
-              >
-                <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                <span className="relative z-10 flex items-center gap-2">
-                  BOOK APPOINTMENT
-                  <Calendar className="w-4 h-4 ml-2" />
-                </span>
-              </button>
-            )}
+            <button 
+              onClick={() => { playHoverSound(); setShowCalendar(true); }}
+              onMouseEnter={playHoverSound}
+              className="group relative inline-flex items-center justify-center gap-2 text-sm text-accent border border-accent/40 bg-accent/5 px-6 py-4 overflow-hidden transition-all hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_15px_rgba(0,255,136,0.3)] font-medium w-full"
+            >
+              <div className="absolute inset-0 translate-x-[-100%] bg-gradient-to-r from-transparent via-accent/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]"></div>
+              <span className="relative z-10 flex items-center gap-2">
+                BOOK APPOINTMENT
+                <Calendar className="w-4 h-4 ml-2" />
+              </span>
+            </button>
           </div>
 
           <div className="w-full">
@@ -149,6 +143,25 @@ export default function Contact() {
         </div>
         
       </div>
+
+      {showCalendar && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-black/80 backdrop-blur-sm animate-[fadeIn_0.3s_ease-out]">
+          <div className="relative w-full max-w-5xl h-full max-h-[85vh] bg-bg-main border border-border-main rounded-xl overflow-hidden flex flex-col shadow-2xl">
+            <div className="flex justify-between items-center p-4 border-b border-border-main bg-bg-secondary shrink-0">
+              <span className="font-mono text-xs uppercase tracking-widest text-text-secondary">Schedule a Meeting</span>
+              <button 
+                onClick={() => setShowCalendar(false)}
+                className="p-1 text-text-muted hover:text-accent transition-colors rounded-sm hover:bg-accent/10"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+            <div className="flex-1 w-full overflow-hidden bg-bg-main relative">
+              <CalBooking />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -15,7 +15,7 @@ export default function CalBooking() {
   }, []);
 
   return (
-    <div className="w-full h-full min-h-[500px]">
+    <div className="w-full h-full min-h-[500px] md:min-h-[650px] lg:min-h-[750px]">
       <Cal
         calLink="yashpanpaliya/appointment"
         style={{ width: "100%", height: "100%", overflow: "scroll" }}
