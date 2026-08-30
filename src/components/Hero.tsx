@@ -72,12 +72,9 @@ export default function Hero() {
         </div>
         
         <div className="mb-10 space-y-2">
-          <h1 ref={leftText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-shine">
-            React Developer.
-          </h1>
-          <br />
-          <h1 ref={rightText} className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] opacity-0 font-light text-shine-muted">
-            & AI Builder.
+          <h1 className="text-5xl sm:text-6xl md:text-[84px] tracking-tighter !leading-[0.9] font-light flex flex-col">
+            <span ref={leftText} className="opacity-0 text-shine">React Developer.</span>
+            <span ref={rightText} className="opacity-0 text-shine-muted">& AI Builder.</span>
           </h1>
         </div>
         
@@ -167,7 +164,7 @@ export default function Hero() {
           <div className="tilt-wrapper w-full h-full">
             <img 
               src="https://i.ibb.co/Q7mFQGG2/selfimg.jpg" 
-              alt="Yash Panpaliya" 
+              alt="Yash Panpaliya - React Developer and AI Builder" 
               className="w-full h-full object-cover object-[center_top] grayscale filter brightness-95 hover:grayscale-0 transition-all duration-500 cursor-pointer"
             />
           </div>

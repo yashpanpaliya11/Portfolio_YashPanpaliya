@@ -32,7 +32,7 @@ gsap.registerPlugin(ScrollTrigger);
 
             <div className="shrink-0 flex items-start pt-1">
               <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border border-border-main p-1 bg-black/50 overflow-hidden shrink-0 group-hover:border-accent transition-colors duration-500 flex items-center justify-center font-sans font-medium text-3xl text-accent">
-                <img src="https://i.ibb.co/kgkVKPL7/logo.png" alt="Observal Logo" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
+                <img src="https://i.ibb.co/kgkVKPL7/logo.png" alt="Observal - Automation Engineering Intern" className="w-full h-full object-cover rounded-full" referrerPolicy="no-referrer" />
               </div>
             </div>
 

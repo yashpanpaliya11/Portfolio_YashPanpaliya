@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { ArrowRight, Mail, Linkedin, Github, Rocket, Send, Calendar, X } from 'lucide-react';
+import { ArrowRight, Mail, Linkedin, Github, Twitter, Rocket, Send, Calendar, X as CloseIcon } from 'lucide-react';
 import { playHoverSound } from '../utils/audio';
 import CalBooking from './CalBooking';
 
@@ -124,6 +124,25 @@ export default function Contact() {
               </a>
 
               <a 
+                href="https://x.com/yashpanpaliya" 
+                target="_blank" rel="noopener noreferrer"
+                onMouseEnter={playHoverSound}
+                className="group flex items-center justify-between py-6 border-b border-border-main hover:border-accent transition-colors"
+                title="Yash Panpaliya X Profile"
+              >
+                <div className="flex items-center gap-5 w-full">
+                  <div className="text-accent group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
+                    <Twitter className="w-6 h-6 stroke-[1.5]" />
+                  </div>
+                  <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
+                    <span className="font-bold">X (Twitter)</span>
+                    <span className="text-accent text-xs mt-1 opacity-80 group-hover:opacity-100 transition-opacity">@yashpanpaliya</span>
+                  </div>
+                </div>
+                <ArrowRight className="w-5 h-5 text-text-muted group-hover:text-accent transition-all duration-300 -translate-x-2 opacity-0 group-hover:translate-x-0 group-hover:opacity-100" />
+              </a>
+
+              <a 
                 href="https://www.fiverr.com/users/yash_panpaliya/portfolio" 
                 target="_blank" rel="noopener noreferrer"
                 onMouseEnter={playHoverSound}
@@ -131,7 +150,7 @@ export default function Contact() {
                 title="Yash Panpaliya Fiverr Profile"
               >
                 <div className="flex items-center gap-5 w-full">
-                  <div className="text-accent group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
+                  <div className="text-accent group-hover:scale-110 group-hover:-rotate-12 transition-all duration-300 drop-shadow-[0_4px_4px_rgba(0,255,136,0.2)] bg-bg-card p-3 rounded-full border border-border-main group-hover:border-accent">
                     <Rocket className="w-6 h-6 stroke-[1.5]" />
                   </div>
                   <div className="font-mono text-text-secondary group-hover:text-accent transition-colors flex flex-col">
@@ -157,7 +176,7 @@ export default function Contact() {
                 onClick={() => setShowCalendar(false)}
                 className="p-1 text-text-muted hover:text-accent transition-colors rounded-sm hover:bg-accent/10"
               >
-                <X className="w-5 h-5" />
+                <CloseIcon className="w-5 h-5" />
               </button>
             </div>
             <div className="flex-1 w-full overflow-hidden bg-bg-main relative">

@@ -113,18 +113,18 @@ export default function Projects() {
               <div className="flex-1 lg:w-1/2 flex flex-col sm:flex-row gap-4 w-full h-full min-h-[300px]">
                 <div className="flex-1 flex flex-col gap-4">
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                    <img src="https://i.ibb.co/VYQV20Z7/1780487143638.jpg" alt="Voice Agent Flow 1" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                    <img src="https://i.ibb.co/VYQV20Z7/1780487143638.jpg" alt="AI Voice Booking Agent Workflow - Screen 1" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
                   </div>
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                    <img src="https://i.ibb.co/8DXPb5JN/1780487145898.jpg" alt="Voice Agent Flow 3" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                    <img src="https://i.ibb.co/8DXPb5JN/1780487145898.jpg" alt="AI Voice Booking Agent Workflow - Screen 3" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
                   </div>
                 </div>
                 <div className="flex-1 flex flex-col gap-4">
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                    <img src="https://i.ibb.co/BHYgTC2Z/1780487142586.jpg" alt="Voice Agent Flow 2" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                    <img src="https://i.ibb.co/BHYgTC2Z/1780487142586.jpg" alt="AI Voice Booking Agent Workflow - Screen 2" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
                   </div>
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
-                    <img src="https://i.ibb.co/mrn9LkxK/1780487143973.jpg" alt="Voice Agent Flow 4" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
+                    <img src="https://i.ibb.co/mrn9LkxK/1780487143973.jpg" alt="AI Voice Booking Agent Workflow - Screen 4" className="absolute inset-0 w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500" />
                   </div>
                 </div>
               </div>
@@ -166,7 +166,7 @@ export default function Projects() {
                 <div className="flex-[2] rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors min-h-[200px]">
                   <img 
                     src="https://i.ibb.co/DsC8Ssm/Screenshot-2026-05-31-at-12-58-52-AM.png" 
-                    alt="CRM Dashboard Pipeline" 
+                    alt="Dukaan Mate CRM Dashboard Pipeline" 
                     className="absolute inset-0 w-full h-full object-cover object-left-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                   />
                   <div className="absolute bottom-3 left-3 bg-[#000000cc] backdrop-blur-sm px-2 py-1 text-[9px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Pipeline View</div>
@@ -175,7 +175,7 @@ export default function Projects() {
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                     <img 
                       src="https://i.ibb.co/PKZKtKs/Screenshot-2026-05-31-at-1-04-03-AM.png" 
-                      alt="CRM Lead Details" 
+                      alt="Dukaan Mate CRM Lead Details View" 
                       className="absolute inset-0 w-full h-full object-cover object-top grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                     />
                     <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Admin</div>
@@ -183,7 +183,7 @@ export default function Projects() {
                   <div className="flex-1 rounded-sm border border-border-main overflow-hidden relative bg-[#050505] group-hover:border-text-primary/30 transition-colors">
                     <img 
                       src="https://i.ibb.co/qLSgjBTP/1779904304632.jpg" 
-                      alt="CRM Mobile View" 
+                      alt="Dukaan Mate CRM Dashboard Mobile View" 
                       className="absolute inset-0 w-full h-full object-cover object-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
                     />
                     <div className="absolute bottom-2 left-2 bg-[#000000cc] backdrop-blur-sm px-1.5 py-0.5 text-[8px] font-mono border border-[#ffffff14] text-text-primary pointer-events-none">Details</div>
