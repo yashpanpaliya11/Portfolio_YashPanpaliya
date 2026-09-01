@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
 import App from './App.tsx';
 import ProjectDetails from './components/ProjectDetails.tsx';
 import Analytics from './components/Analytics.tsx';
@@ -16,6 +17,7 @@ createRoot(document.getElementById('root')!).render(
     <PreferenceProvider>
       <BrowserRouter>
         <Analytics />
+        <VercelAnalytics />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/project/:id" element={<ProjectDetails />} />
